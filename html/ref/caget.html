@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>caget</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="caget">caget</h1>
+<pre><code>
+tip&gt; caget
+usage: caget EPICS_record [&gt; v]
+ get the value from EPICS_record and print contents
+ if &#39;&gt;&#39; is specified the value is redirected to the data v.
+ also the following macro variable is created.
+macro variable:
+   v : the 1st element of data v
+ </code></pre>
+<p>Get the all elements of EPICS_record and print them.</p>
+<p>If it is redirected to “&gt; v”, the following variables are created.</p>
+<ul>
+<li><strong>data varaible :</strong> <code>set v = (all elements of EPICS_record)</code></li>
+<li><strong>macro variable :</strong> <code>@ v = (1st element of EPICS_record)</code></li>
+</ul>
+<p>exmaple</p>
+<pre><code>
+tip&gt; caget monitor:wf.NELM
+monitor:wf.NELM 2025-11-09 15:56:40.736024  100
+
+tip&gt; caget monitor:wf.NELM &gt; nelm
+tip&gt; ls nelm
+nelm : number [100]        ;# created macro variable
+nelm : data(num) : size=1  ;# created data variable
+
+tip&gt; set t=range([nelm],1,[nelm])
+tip&gt; set v=sin(t)
+tip&gt; cat v (nr:1,2)
+v : data(num) :  0.84147098481 0.90929742683
+
+tip&gt; caput monitor:wf &lt; v
+
+tip&gt; caget monitor:wf &gt; v2
+tip&gt; ls v2
+v2 : number [0.84147098481]   ;# created macro variable (1st elemrnt of wf)  
+v2 : data(num) : size=100     ;# created data variable (all elements of wf)
+
+tip&gt; cat v2 (nr:1,2)
+v2 : data(num) :  0.84147098481 0.90929742683
+ </code></pre>
+</body>
+</html>

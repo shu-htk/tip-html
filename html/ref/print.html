@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>print</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="print-println-pr-prn">print, println, pr, prn</h1>
+<pre><code>
+tip&gt; print
+usage: print args...
+       println args...
+ print arguments with macro variables format.
+                 (see also &#39;fmt&#39; command)
+print  : line is not returned. (abbreviate to &#39;pr&#39;)
+println: line is returned. (abbreviate to &#39;prn&#39;)
+ </code></pre>
+<p>the following escape sequence is available.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">escape char</th>
+<th style="text-align: center;">function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"> tab</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">return line</td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+tip&gt; print Hello\tWorld\n
+Hello  World
+ </code></pre>
+<p>the quotations are printed as they are.</p>
+<pre><code>
+tip&gt; prn You said &quot;Hello World&quot;  ;# prn is abbr. of println 
+You said &quot;Hello World&quot;
+ </code></pre>
+<p>the value of the macro variable is formated using <a href="fmt.html">fmt</a> command.</p>
+<pre><code>
+tip&gt; @ e10=exp(10)
+tip&gt; prn [e10]
+22026.465795
+
+tip&gt; fmt %.3e
+tip&gt; prn [e10]
+2.203e+04
+ </code></pre>
+</body>
+</html>

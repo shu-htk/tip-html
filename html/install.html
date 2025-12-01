@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>install</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="install">Install</h1>
+<p>At the moment the following systems have been tested.</p>
+<ul>
+<li>Ubuntu 24.04 (both of native and WSL2 on Windows11)</li>
+<li>AlmaLinux 9.5 (both of native and WSL2 on Windows11)</li>
+<li>macOS 12.7.6 (MacBook Air 2015 MJVM2J/A)</li>
+</ul>
+<p>In principle you can install the tip on the system which PLPLOT and GNU readline are installed.</p>
+<h2 id="install-plplot-gnu-readline">(1) Install PLPLOT, GNU-readline</h2>
+<ul>
+<li><strong>Ubuntu 24.04</strong></li>
+</ul>
+<pre><code>
+sudo apt update
+sudo apt upgrade
+sudo apt install g++
+sudo apt install libplplot-dev
+sudo apt install plplot-driver-cairo
+sudo apt install libreadline-dev
+ </code></pre>
+<ul>
+<li><strong>AlmaLinux 9</strong></li>
+</ul>
+<pre><code>
+sudo dnf update
+sudo dnf upgrade
+sudo dnf install dnf-plugins-core     (&lt;-- this may not be necessary)
+sudo dnf config-manager --enable crb
+sudo dnf install epel-release
+sudo dnf install epel-next-release
+sudo dnf install g++
+sudo dnf install plplot-devel
+sudo dnf install readline-devel
+ </code></pre>
+<ul>
+<li><strong>Windows 11</strong></li>
+</ul>
+<p>The easiest way is to run the Linux on WSL2.</p>
+<p>official : https://learn.microsoft.com/windows/wsl/install</p>
+<ul>
+<li><strong>macOS 12.7.6</strong></li>
+</ul>
+<ol type="1">
+<li>install MacPorts https://www.macports.org</li>
+<li>install XQuartz https://www.xquartz.org</li>
+<li>install PLPLOT, readline from the terminal<br />
+</li>
+</ol>
+<pre><code>
+ $ sudo port install plplot
+ $ sudo port install readline
+ </code></pre>
+<h2 id="configure-and-make-the-tip-executable">(2) Configure and make the tip executable</h2>
+<p>Access to https://github.com/shu-htk/tip-dev</p>
+<p>From the <strong>“Code”</strong> pull-down menu, choose <strong>“Download zip”</strong></p>
+<p>or directly download from https://github.com/shu-htk/tip-dev/archive/refs/heads/main.zip</p>
+<p>Copy downloaded zip file to your working directory.</p>
+<p>On the Linux terminal, extract zip file,</p>
+<pre><code>
+unzip tip-dev-main.zip
+ </code></pre>
+<p>then do</p>
+<pre><code>
+cd tip-dev-main
+./configure
+make
+ </code></pre>
+<p>The executable is compiled and outputted to <code>./bin/tip</code></p>
+<p>If your shell has command path to <span class="math inline">$HOME/bin, copy the executable file to `$</span>HOME/bin` by</p>
+<pre><code>
+make install
+ </code></pre>
+<!--
+edit $HOME/.bashrc and add the following line
+```
+export PATH=$PATH:$HOME/bin
+```
+-->
+<h2 id="about-my_macro">(3) About my_macro</h2>
+<p>The executable file <code>my_macro</code> is also installed when you install the <code>tip</code>.<br />
+It is a simple example using <a href="ref/MacroTool.html">MacroTool</a>.</p>
+<h2 id="enable-epics-ca-optional">(4) Enable EPICS CA (optional)</h2>
+<p>If it is already installed the EPICS in your computer, just check if the environment variable <code>EPICS_BASE</code> is set in your shell. If it is set, the <a href="#2-configure-and-make-the-tip-executable">configure script of the Tip</a> generate Makefile to enable the EPICS CA.</p>
+<p>If it is not installed the EPICS, you need to make and setup the EPICS environment as following.</p>
+<p>Download the archive of the EPICS source.</p>
+<ul>
+<li>stable:: https://epics-controls.org/download/base/base-3.15.9.tar.gz</li>
+<li>new: https://epics-controls.org/download/base/base-7.0.9.tar.gz</li>
+</ul>
+<p>For example, installing new version to $HOME/epics</p>
+<pre><code>
+mkdir -p $HOME/epics
+cp base-7.0.9.tar.gz $HOME/epics
+cd $HOME/epics
+tar zxf base-7.0.9.tar.gz
+cd base-7.0.9
+make
+ </code></pre>
+<p>It takes for a while to complete compiling.</p>
+<p>After that you should set the environment variable as following.</p>
+<pre><code>
+export EPICS_BASE=$HOME/epics/base-7.0.9
+ </code></pre>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>caput</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="caput">caput</h1>
+<pre><code>
+tip&gt; caput
+usage: caput EPICS_record &lt; v
+usage: caput EPICS_record &lt; expression
+ put the value to EPICS_record.
+ if data v exist, the value of v is put to EPICS_record,
+ if not exist, the expression value is put to EPICS_record.
+ </code></pre>
+<p>example</p>
+<pre><code>
+tip&gt; cainfo monitor:str
+monitor:str
+    State:         connected
+    Host:          some.host.name
+    Access:        read=1, write=1
+    Data type:     DBR_STRING (native: DBF_STRING)
+    Element count: 1
+
+tip&gt; set s = Good morning
+tip&gt; caput monitor:str &lt; s
+tip&gt; caget monitor:str
+monitor:str 2025-11-09 16:35:33.955544  Good morning
+
+tip&gt; @ s1 = Hello
+tip&gt; @ s2 = World
+tip&gt; caput monitor:str &lt; [s1] [s2]
+tip&gt; caget monitor:str
+monitor:str 2025-11-09 16:42:22.081168  Hello World
+
+tip&gt; caput monitor:str &lt; exp(1)
+tip&gt; caget monitor:str
+monitor:str 2025-11-09 16:42:34.160567  2.7182818285
+ </code></pre>
+<p>see also <a href="caget.html">caget</a>.</p>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MacroTool</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="macrotool">MacroTool</h1>
+<p>MacroTool is the header-only class library which provide the following command:</p>
+<pre><code>
+macro commands:
+ @     : define numerical or string variable
+ args  : define default arguments of the macro file
+ ++    : increment(+1) numerical variable
+ --    : decrement(-1) numerical variable
+ for   : foreach loop
+ do    : numerical ranged loop
+ if    : conditional branch
+ print : print arguments (abbr. pr)
+ fmt   : set output format of macro variable
+ wait  : wait time or console input
+ sys   : execute system command
+ split : split string variable
+ calc  : evaluate the numerical expression
+ logic : evaluate the logical expression
+ q     : terminate this program
+ </code></pre>
+<p>There is a simple example how to use MacroTool : <code>src/c++03/my_macro.cc</code>.</p>
+<pre><code>
+// my_macro : simple example how to use thl::MacroTool
+//
+// c++03
+//
+#include &quot;thl/MacroTool.hh&quot;
+
+class MyMacro : public thl::MacroTool {
+private:
+  int _debug;
+public:
+  MyMacro() : _debug(0) {}
+  int add_commands(std::string buf) {// called from thl::MacroTool::parse_vbuf()
+    thl::StrSplit args;
+    args.set_quot_to_skip_split(&#39;&quot;&#39;);
+    args.split(buf);
+       if(args(0)==&quot;help&quot;) {
+      printf(&quot;additional commands:\n&quot;
+         &quot; exe  : execute a macro file.\n&quot;
+         &quot; ls   : print macro variables.\n&quot;
+         &quot; rm   : remove macro variables.\n&quot;
+         );
+      print_help();
+      return 0;
+    }
+    if(args(0)==&quot;exe&quot;) {
+      if(args.size() &lt; 2) {
+    printf(&quot;usage: exe [macro_file] [arg1,arg2,..]\n&quot;
+           &quot; execute macro_file.\n&quot;);
+    return 0;
+      }
+      std::string arg_list=(args.size()&gt;2) ? args(2) : &quot;&quot;;
+      exec(args(1),arg_list);
+      return 0;
+    }
+    if(args(0)==&quot;ls&quot;) {
+      if(args.size() &lt; 2) {
+    printf(&quot;usage: ls [pattern]\n&quot;
+           &quot; print macro variables which matches pattern.\n&quot;
+           &quot; example: &#39;ls *&#39; show all defined macro variables.\n&quot;);
+    return 0;
+      }
+      var.ls(args(1));
+      return 0;
+    }
+    if(args(0)==&quot;rm&quot;) {
+      if(args.size() &lt; 2) {
+    printf(&quot;usage: rm [pattern]\n&quot;
+           &quot; remove macro variables which matches pattern.\n&quot;
+           &quot; example: &#39;rm *&#39;  remvoe all macro variables.\n&quot;);
+    return 0;
+      }
+      var.rm(args(1));
+      return 0;
+    }
+    return 1;
+  }
+};
+
+int main() {
+  MyMacro macro;
+  macro.main_loop();
+  return 0;
+}
+ </code></pre>
+</body>
+</html>

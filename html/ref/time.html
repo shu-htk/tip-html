@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>time</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="time">time</h1>
+<pre><code>
+tip&gt; time
+usage: set vn = time([vn|vs][,unit])
+usage: set vs = time([vn|vs],str)
+ convert the time data
+ vs is the string data of ISO time-format.
+ vn is numerical data of unix-epoch time.
+ if 1st argument is &quot;now&quot; it returns the current local time
+ unit:
+   utime : return unix-epoch time in usec precision (UTC)
+   year  : return years with decimal (local time)
+   mon   : return months with decimal (local time)
+   day   : return days with decimal (local time)
+   hour  : return hours with decimal (local time)
+   min   : return minutes with decimal (local time)
+   sec   : return seconds with decimal (local time)
+   usec  : return micro-seconds
+   str   : return ISO time format string (local time)
+                  like &quot;Year-Mon-Day Hour:Min:Sec[.Usec]&quot;
+ if unit is not specified, it returns unix-epoch time.
+ </code></pre>
+<h2 id="option">option</h2>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>td:</code> set delimiters of time format string<br />
+&gt; argument of <code>td:</code> is 3 characters, “ABC”<br />
+&gt; A is delimiter of date among year, month, day (default is hyphen <code>&#39;-&#39;</code>)<br />
+&gt; B is delimiter between date and time (default is space <code>&#39; &#39;</code>)<br />
+&gt; C is delimiter of time among hour, min, sec (default is colon <code>&#39;:&#39;</code>)</li>
+</ul>
+<blockquote>
+<p>ISO 8601 is <code>td:&quot;-T:&quot;</code>, but it is defaulted to <code>td:&quot;- :&quot;</code> in the tip interpreter.</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; set tn=time(now)
+tip&gt; set ts=time(tn,str)
+tip&gt; cat ts
+ts : data(str) :  2025-11-05 12:26:53.353887
+
+tip&gt; set ts=time(tn,str) (td:&quot;-T:&quot;)   ;# ISO 8601
+tip&gt; cat ts
+ts : data(str) :  2025-11-05T12:26:53.353887
+
+tip&gt; set ts=time(tn,str) (td:&quot;/ :&quot;)   ;# using / as the delimiter of date
+tip&gt; cat ts
+ts : data(str) :  2025/11/05 12:26:53.353887
+ </code></pre>
+<h2 id="convert-unix-epoch-time-to-time-string">convert unix epoch time to time string</h2>
+<p>example</p>
+<pre><code>
+tip&gt; set vn=time(now)    ;# convert current local time to unix epoch time
+tip&gt; cat vn
+vn : data(num) :  1762073282
+
+tip&gt; set vs=time(vn,str) ;# convert unix epoch time to time string
+tip&gt; cat vs
+vs : data(str) :  2025-11-02 08:48:13.322786
+ </code></pre>
+<h2 id="convert-time-string-to-unix-epoch-time">convert time string to unix epoch time</h2>
+<p>example</p>
+<pre><code>
+tip&gt; set vs=time(now,str)  ;# convert current local time to time string
+tip&gt; cat vs
+vs : data(str) :  2025-11-02 08:48:13.322786
+
+tip&gt; set vn=time(vs,utime) ;# convert time string to unix epoch time
+tip&gt; cat vn
+vn : data(num) :  1762073282
+
+tip&gt; set vn=time(vs)   ;# argument utime can be omitted
+tip&gt; cat vn
+vn : data(num) :  1762073282
+ </code></pre>
+<h2 id="convert-to-year-month-day-hour-min-sec-usec">convert to year, month, day, hour, min, sec, usec</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">unit</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">str</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: center;">Y-M-D h:m:s.us</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">usec</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">us</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sec</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">s + usec*0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">min</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">m + sec/60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">hour</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">h + min/60</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">day</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">D + hour/24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">month</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">M + day/[28|29|30|31]</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">year</td>
+<td style="text-align: center;">floating point number</td>
+<td style="text-align: center;">Y + yday/[365|366]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>yday is the amount of days since the beginning of the year (the leap year is factored in)</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; set vn=time(now)
+tip&gt; set year=time(vn,year)
+tip&gt; set mon=time(vn,mon)
+tip&gt; set day=time(vn,day)
+tip&gt; set hour=time(vn,hour)
+tip&gt; set min=time(vn,min)
+tip&gt; set sec=time(vn,sec)
+tip&gt; set usec=time(vn,usec)
+
+tip&gt; cat year,mon,day,hour,min,sec,usec
+year : data(num) :  2025.8366214
+mon : data(num) :  11.045560696
+day : data(num) :  2.3668208656
+hour : data(num) :  8.8037007739
+min : data(num) :  48.222046435
+sec : data(num) :  13.322786093
+usec : data(num) :  322786.09276
+
+tip&gt; set vs=time(vn,str)
+tip&gt; cat vs
+vs : data(str) :  2025-11-02 08:48:13.322786
+ </code></pre>
+<h2 id="time-function-for-the-macro-variable">time() function for the macro variable</h2>
+<blockquote>
+<p>time() function is also available to set macro variable.</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; @ n=time(now)
+tip&gt; @ year=time([n],year)
+tip&gt; @ mon=time([n],mon)
+tip&gt; @ day=time([n],day)
+tip&gt; @ hour=time([n],hour)
+tip&gt; @ min=time([n],min)
+tip&gt; @ sec=time([n],sec)
+tip&gt; @ usec=time([n],usec)
+
+tip&gt; ls year,mon,day,hour,min,sec,usec
+year : number [2025.8453539]
+mon : number [11.151805759]
+day : number [5.5541727768]
+hour : number [13.300146649]
+min : number [18.008799273]
+sec : number [0.527976824]
+usec : number [527999.609]
+
+tip&gt; @ s=time([n],str)
+tip&gt; ls s
+s : string [2025-11-05 13:18:00.500000]
+ </code></pre>
+<h2 id="omitting-datetime-in-the-time-format">omitting date/time in the time format</h2>
+<blockquote>
+<p>omitting time, it is complemented with “00:00:00.0”<br />
+omitting date, it is complemented with current date</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; @ t0=time(now)           ;# current time
+tip&gt; @ t1=time(&quot;2020-02-03&quot;)  ;# input time string without time
+tip&gt; @ t2=time(&quot;13:26:49&quot;)    ;# input time string without date
+tip&gt;
+tip&gt; @ ts0=time([t0],str)     ;# convert unix epoch time to time string
+tip&gt; @ ts1=time([t1],str)     ;# convert unix epoch time to time string
+tip&gt; @ ts2=time([t2],str)     ;# convert unix epoch time to time string
+tip&gt;
+tip&gt; ls ts?
+ts0 : string [2025-11-17 14:35:59.700000] ;# current time
+ts1 : string [2020-02-03 00:00:00.000000] ;# time is &quot;00:00:00.0&quot;
+ts2 : string [2025-11-17 13:26:49.000000] ;# date is taken from the current time 
+ </code></pre>
+<h2 id="making-data-array-of-the-time-string">making data array of the time string</h2>
+<p>example</p>
+<pre><code>
+tip&gt; @ t1 = time(&quot;1999-12-31&quot;)    ;# convert to unix epoch time
+tip&gt; @ t2 = time(&quot;2000-01-02&quot;)    ;# convert to unix epoch time
+tip&gt; set t = range(13,[t1],[t2])  ;# make data array of unix epoch time
+tip&gt; set ts = time(t,str)         ;# convert to data array of time string
+tip&gt; cat ts (fs:&quot;\n&quot;)
+ts : data(str) :
+1999-12-31 00:00:00.000000
+1999-12-31 04:00:00.000000
+1999-12-31 08:00:00.000000
+1999-12-31 12:00:00.000000
+1999-12-31 16:00:00.000000
+1999-12-31 20:00:00.000000
+2000-01-01 00:00:00.000000
+2000-01-01 04:00:00.000000
+2000-01-01 08:00:00.000000
+2000-01-01 12:00:00.000000
+2000-01-01 16:00:00.000000
+2000-01-01 20:00:00.000000
+2000-01-02 00:00:00.000000
+ </code></pre>
+<p>for more example, see <a href="../ex/ex17a.html">ex17a</a>, <a href="../ex/ex17b.html">ex17b</a>, <a href="../ex/ex18.html">ex18</a></p>
+</body>
+</html>

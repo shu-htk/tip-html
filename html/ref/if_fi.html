@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>if_fi</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="if-elif-else-fi">if, elif, else, fi</h1>
+<pre><code>
+tip&gt; if
+usage: if expr; ...; elif expr; ...; else; ...; fi
+ </code></pre>
+<p>conditional branch by evaluating logical expression</p>
+<p>see <a href="logic.html">logic</a> to learn how the logical expression evaluated</p>
+<ul>
+<li>example 1</li>
+</ul>
+<pre><code>
+do n 1 10
+  if [n]&lt;3
+    continue
+  elif [n]&gt;=8
+    break
+  else
+    prn [n]
+  fi
+end
+ </code></pre>
+<p>result</p>
+<pre><code>
+3
+4
+5
+6
+7
+ </code></pre>
+<ul>
+<li>example 2</li>
+</ul>
+<pre><code>
+for c (H e l l o W o r l d)
+  pr [c]
+  if [c]==[A-Z]; pr  : Capital; fi
+  pr \n
+end
+ </code></pre>
+<p>result</p>
+<pre><code>
+H: Capital
+e
+l
+l
+o
+W: Capital
+o
+r
+l
+d
+ </code></pre>
+<ul>
+<li>example 3</li>
+</ul>
+<pre><code>
+for name (Greg Anna Ryan Mary Josh)
+  pr [name]
+  if [name]=={Greg,Ryan,Josh}
+    pr  : Boy
+  fi
+  if [name]=={Anna,Mary}
+    pr  : Girl
+  fi
+  if [name]==A*
+    pr  : name begin from &#39;A&#39;
+  fi
+  pr \n
+end
+ </code></pre>
+<p>result</p>
+<pre><code>
+Greg: Boy
+Anna: Girl: name begin from &#39;A&#39;
+Ryan: Boy
+Mary: Girl
+Josh: Boy
+ </code></pre>
+</body>
+</html>

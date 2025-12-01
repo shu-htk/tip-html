@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sort</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sort">sort</h1>
+<pre><code>
+tip&gt; sort
+usage: sort v1,v2,... by v
+ sort data v1,v2,... by v in ascending order.
+ it is created sorted data v1_sort,v2_sort,...
+ </code></pre>
+<blockquote>
+<p>argument list of variable names is separated by comma with no spaces.</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; set x={3,1,7,9,5}
+tip&gt; set s={d,e,a,b,c}
+tip&gt; cat x,s
+x : data(num) :  3 1 7 9 5
+s : data(str) :  d e a b c
+
+tip&gt; sort x,s by x
+tip&gt; cat x_sort,s_sort
+x_sort : data(num) :  1 3 5 7 9
+s_sort : data(str) :  e d c a b
+
+tip&gt; sort x,s by s
+tip&gt; cat x_sort,s_sort
+x_sort : data(num) :  7 9 5 3 1
+s_sort : data(str) :  a b c d e
+ </code></pre>
+</body>
+</html>

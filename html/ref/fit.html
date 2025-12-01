@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>fit</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="fit">fit</h1>
+<pre><code>
+tip&gt; fit
+usage: fit x y [lin|quad|exp|log|gaus|sin|circ] [(opt)]
+ do fitting to the data x and y and draw the result.
+ you should do &#39;plot x y&#39; before this command.
+ available fitting functions:
+   l[in] : y = c0 + c1*x 
+   q[uad]: y = c0 + c1*x + c2*x^2 
+   e[xp] : y = c0*exp(c1*x) 
+   log   : y = c0 + log(c1*x) 
+   g[aus]: y = c0*exp(-(x-c1)^2/2*c2^2) 
+   s[in] : y = c0 + c1*sin(2*PI*c3*x) + c2*cos(2*PI*c3*x) 
+   c[irc]: (x-c0)^2 + (y-c1)^2 = c2^2 
+ </code></pre>
+<p>Fit the curve to data x and y after <a href="plot.html">plot</a> command. The fitting information is outputted to console and fitting curve is drawn on the existing graph. If you specify option <code>cp:X,Y</code>, the fitting information is drawn in the graph at (X,Y).</p>
+<blockquote>
+<p>user defined fitting function is not available</p>
+</blockquote>
+<h2 id="fitting-functions">fitting functions</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">abbr.</th>
+<th style="text-align: center;">function</th>
+<th style="text-align: center;">option</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">lin</td>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">y = c0 + c1*x</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">quad</td>
+<td style="text-align: center;">q</td>
+<td style="text-align: center;">y = c0 + c1*x + c2*x^2</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">exp</td>
+<td style="text-align: center;">e</td>
+<td style="text-align: center;">y = c0*exp(c1*x)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">log</td>
+<td style="text-align: center;">log</td>
+<td style="text-align: center;">y = c0 + log(c1*x)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">gaus</td>
+<td style="text-align: center;">g</td>
+<td style="text-align: center;">y = c0*exp(-(x-c1)<sup>2/2*c2</sup>2)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sin</td>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">y = c0 + c1*sin(2*PI*c3*x) + c2*cos(2*PI*c3*x)</td>
+<td style="text-align: center;"><code>fq:</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">circ</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">(x-c0)^2 + (y-c1)^2 = c2^2</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="option">option</h2>
+<h3 id="option-with-single-argument">option with single argument</h3>
+<ul>
+<li><code>lc:</code> line color of fitting curve</li>
+<li><code>lt:</code> line style of fitting curve</li>
+<li><code>rc:</code> flag to set relative coordinate for comment position</li>
+<li><code>cf:</code> set tag of macro variable to store fitting coefficients</li>
+<li><code>fq:</code> set frequency of sinusoidal (sin) fitting</li>
+</ul>
+<h3 id="option-with-two-arguments">option with two arguments</h3>
+<blockquote>
+<p>arguments is separated by comma with no spaces.</p>
+</blockquote>
+<ul>
+<li><code>cp:</code> comment position of fitting information</li>
+</ul>
+<p>example</p>
+<pre><code>
+opt (lw:0 st:pls sc:red)
+
+set x = range(50, 0.01, 0.5)
+
+set y = 1.2 + 3.4*x
+plot x y
+fit x y lin (cf:a)    ;# store fitting coef to a0, a1
+
+wait 0
+
+set y = 1.2 + 3.4*x + 5.6*x*x
+plot x y
+fit x y quad (cf:b)   ;# store fitting coef to b0, b1, b2
+
+wait 0
+
+set y = 1.2*exp(3.4*x)
+plot x y
+fit x y exp (cf:c)    ;# store fitting coef to c0, c1
+
+ls a?,b?,c?
+ </code></pre>
+<p>result</p>
+<pre><code>
+@ Linear Fitting:
+ y = c0 + c1*x
+ c0=1.2
+ c1=3.4
+ chi2/ndf= 5.59e-29/48
+
+@ Quadratic Fitting:
+ y = c0 + c1*x + c2*x^2
+ c0=1.2
+ c1=3.4
+ c2= 5.6
+ chi2/ndf= 2.36e-27/47
+
+@ Exponential Fitting:
+ y = c0*exp(c1*x)
+ c0=1.2
+ c1=3.4
+ chi2/ndf= 4.26e-29/48
+
+a0 : number [1.2]
+a1 : number [3.4]
+b0 : number [1.2]
+b1 : number [3.4]
+b2 : number [5.6]
+c0 : number [1.2]
+c1 : number [3.4]
+ </code></pre>
+<p>see <a href="../ex/ex07a.html">ex7a</a>, <a href="../ex/ex07b.html">ex7a</a></p>
+</body>
+</html>

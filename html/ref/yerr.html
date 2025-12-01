@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yerr</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="yerr">yerr</h1>
+<pre><code>
+tip&gt; yerr
+usage: yerr x y ey [(opt)]
+ plot y-error-bars of the data ey
+ you should do &#39;plot x y&#39; before this command.
+ </code></pre>
+<p>example</p>
+<pre><code>
+@ num_of_data_set = 20
+
+set x = range([num_of_data_set],1,10)
+
+do n 1 [num_of_data_set]
+  @ num_of_trial = 100
+  @ sigma = 0.1
+  set measure = random([num_of_trial],gaus,[sigma]) 
+  stat measure
+  set mean = [measure_mean] ;# error of center value
+  set rms = [measure_rms]   ;# error of root mean square
+  cat mean &gt;&gt; err_mean      ;# append to data array
+  cat rms &gt;&gt; err_rms        ;# append to data array
+end
+
+@ pi = 3.14159265
+@ freq = 0.2
+set y = sin([freq]*2*[pi]*x) + err_mean  ;# measured data
+
+opt (gd:1 xt:1)
+plot x y (lw:0 st:star sc:red)  ;# plot measured data
+yerr x y err_rms                ;# plot error of measured data
+fit x y s (lc:blue fq:[freq])   ;# fitting to measured data
+ </code></pre>
+</body>
+</html>

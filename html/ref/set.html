@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>set</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="set">set</h1>
+<pre><code>
+tip&gt; set
+usage: set v = {x0,x1,x2,...}
+       set v = range(N,x0,x1)
+       set v = random(N,uni|gaus|exp[,params...]) [(opt)]
+       set v = time(t[,unit]) 
+       set v = expression
+ set the data v by some expressions.
+ see &#39;range&#39;, &#39;random&#39;, &#39;time&#39; for more information.
+ </code></pre>
+<h2 id="set-data-using-initializer-list">set data using initializer list</h2>
+<blockquote>
+<p>initializer list is enclosed by { } separated by comma or space.</p>
+</blockquote>
+<pre><code>
+tip&gt; set x = {1, 2, 3} # OK: you can put spaces between value and comma
+tip&gt; set x={1,2,3}     # OK
+ </code></pre>
+<h2 id="set-data-using-range">set data using range()</h2>
+<blockquote>
+<p><a href="range.html">range</a>() is a function exclusive to the <code>set</code> command and cannot be used in the expressions.</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; set x = range(10, 1, 10)  ;# OK: you can put spaces between value and comma
+tip&gt; set x = range (10, 1, 10) ;# NG: you can not put spaces between range and (
+tip&gt; set x=range(10,1,10)      ;# OK
+tip&gt; set x = y + range(10,1,10) ;# NG: you can not use it in the expression
+ </code></pre>
+<h2 id="set-data-using-random">set data using random()</h2>
+<blockquote>
+<p><a href="random.html">random</a>() is a function exclusive to the <code>set</code> command and cannot be used in the expressions.</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; set x=random(1000,uni,-10,10) ;# uniform dist. -10 &lt;= x &lt;= 10
+tip&gt; set x=random(1000)            ;# default 0 &lt;= x &lt;= 1
+
+tip&gt; set x=random(1000,gaus,0.5,1) ;# Gaussian dist. sgm=0.5, mean=1 
+tip&gt; set x=random(1000,gaus)       ;# default sgm=1, mean=0 
+
+tip&gt; set x=random(1000,exp,2)      ;# exponential dist. tau=2
+tip&gt; set x=random(1000,exp)        ;# default tau=1
+
+tip&gt; set x=random(10,gaus)+random(10,exp); NG: you can not use it in the expression
+tip&gt; # for the above case you should do like,
+tip&gt; set x1=random(10,gaus)
+tip&gt; set x2=random(10,exp)
+tip&gt; set x=x1+x2
+ </code></pre>
+<h2 id="set-data-using-time">set data using time()</h2>
+<blockquote>
+<p><a href="time.html">time</a>() is a function exclusive to the <a href="set.html">set</a> and <a href="var.html">@</a> command and cannot be used in the expressions.</p>
+</blockquote>
+<h2 id="set-data-by-expression">set data by expression</h2>
+<blockquote>
+<p>If there are variables in the expression, new data is created which size is the same as data in the expression.</p>
+</blockquote>
+<blockquote>
+<p>If there are no variables in the expression, size of new data is 1.</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; rm *
+tip&gt; set a={1,2,3}
+tip&gt; set b={4,5,6}
+tip&gt; set c=a+b      ;# data c is created as the same size of data a and b
+tip&gt; cat *
+a : data(num) :  1 2 3
+b : data(num) :  4 5 6
+c : data(num) :  5 7 9
+
+tip&gt; set d={7,8}    ;# size of data d is different from data a and b
+tip&gt; set e=a+b+d    ;# NG: data e is not created 
+size of a != size of d
+tip&gt; cat *
+a : data(num) :  1 2 3
+b : data(num) :  4 5 6
+c : data(num) :  5 7 9
+d : data(num) :  7 8
+
+tip&gt; set x = exp(1)  ;# no variables in the expression
+tip&gt; ls x
+x : data(num) : size=1  ;# data size is 1
+tip&gt; cat x
+x : data(num) :  2.7182818285
+tip&gt;
+ </code></pre>
+</body>
+</html>

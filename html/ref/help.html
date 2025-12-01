@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>help</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="help">help</h1>
+<p>It shows all commands of the tip interpreter.</p>
+<pre><code>
+tip&gt; help
+list of commands:
+ arc   : draw a circle in 2D-graph
+ box   : draw the axis of 2D-graph in the box shape
+ box3  : draw the axes of 3D-graph
+ cat   : show data contents / concatenate data
+ cut   : set cut condition
+ div   : divide the drawing area
+ elem  : copy data element to macro variable
+ exe   : execute macro file
+ fbox  : draw a filled pattern box in 2D-graph
+ ffit  : fit the frequency domain graph
+ fit   : fit the data in 2D-graph
+ fit3  : fit the data in 3D-graph
+ fill  : draw a filled pattern object in 2D-graph
+ font  : set text font
+ fplot : plot the frequency domain graph from the data
+ help  : show help message
+ hfit  : fit the histogram
+ hplot : plot the histogram from the data
+ hplot2: plot the 2D-histogram from the couple of data
+ line  : draw a line in 2D-graph
+ ls    : list macro/data variables
+ mplot : plot mesh-graph(3D) or contour-graph(2D)
+ mread : read the mesh data from the file
+ mset  : set mesh data
+ mwrite: write the mesh data to the file
+ opt   : set/show global options
+ plot  : plot the data in the 2D-graph
+ plot3 : plot the data in the 3D-graph
+ read  : read the data from the file
+ rm    : remove macro/data variables
+ set   : set the data
+ sort  : sort the data in ascending order
+ stat  : calc statistics from the data
+ symb  : draw a symbol in 2D-graph
+ text  : draw a text in 2D-graph
+ title : set the graph title
+ tfmt  : set the x-axis time format
+ viewport : set drawing area in the window (abbr. vp)
+ write : write the data to the file
+ xerr  : plot the x-error-bars in 2D-graph
+ xlab  : set the x-axis label
+ yerr  : plot the y-error-bars in 2D-graph
+ ylab  : set the y-axis label
+ zlab  : set the z-axis label in 3D-graph
+macro commands:
+ @     : define numerical or string variable
+ ++    : increment(+1) numerical variable
+ --    : decrement(-1) numerical variable
+ for   : foreach loop
+ do    : numerical ranged loop
+ if    : conditional branch
+ print : print arguments (abbr. pr)
+ fmt   : set output format of macro variable
+ wait  : wait time or console input
+ sys   : execute system command
+ split : split string variable
+ calc  : evaluate the numerical expression
+ logic : evaluate the logical expression
+ q     : terminate this program
+
+ without arguments, you get usage of the above commands
+ </code></pre>
+</body>
+</html>

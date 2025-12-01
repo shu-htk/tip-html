@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>box</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="box">box</h1>
+<pre><code>
+tip&gt; box
+usage: box x0 x1 y0 y1 [(opt)]
+ </code></pre>
+<p>draw 2-dimensional axis frame in the box shape.<br />
+- x-axis range: from x0 to x1 - y-axis range: from y0 to y1</p>
+<h2 id="option">option</h2>
+<h3 id="option-with-single-argument">option with single argument</h3>
+<ul>
+<li><code>xt:</code> x-tick interval</li>
+<li><code>yt:</code> y-tick interval</li>
+<li><code>xn</code>: x-subtick num</li>
+<li><code>yn</code>: y-subtick num</li>
+<li><code>xs:</code> x-axis scale, (lin, log)</li>
+<li><code>ys:</code> x-axis scale, (lin, log)</li>
+<li><code>gd:</code> set flag to draw grid line, (0=not draw, 1=draw)</li>
+<li><code>bo:</code> set box drawing order, (0=horizontal, 1=vertical)</li>
+<li><code>bp:</code> set box position, (from 1 to max number of divided frame)</li>
+<li><code>lw:</code> set box line width, (0=not draw, 1=draw)</li>
+</ul>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>tl:</code> title (see <a href="title.html">title</a>)</li>
+<li><code>xl:</code> x-label (see <a href="xlab.html">xlab</a>)</li>
+<li><code>yl:</code> y-label (see <a href="ylab.html">ylab</a>)</li>
+</ul>
+<p>see <a href="../ex/ex16.html">ex16: plot divided box by vertical order</a></p>
+</body>
+</html>

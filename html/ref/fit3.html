@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>fit3</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="fit3">fit3</h1>
+<pre><code>
+tip&gt; fit3
+usage: fit3 x y z [plane] [(opt)]
+ do fitting to the data x,y,z by plane function.
+ you should do &#39;plot3 x y z&#39; before this command.
+ available fitting functions:
+   p[lane] : z = c0 + c1*x + c2*y
+ </code></pre>
+<p>Fit the plane to the data x, y and z after <a href="plot3.html">plot3</a> command. The fitting information is outputted to console and fitting plane is drawn on the existing graph. If you specify option <code>cp:X,Y</code>, the fitting information is drawn in the graph at (X,Y).</p>
+<blockquote>
+<p>user defined fitting function is not available</p>
+</blockquote>
+<h2 id="fitting-functions">fitting functions</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">abbr.</th>
+<th style="text-align: center;">function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">plane</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">z = c0 + c1*x + c2*y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="option">option</h2>
+<h3 id="option-with-single-argument">option with single argument</h3>
+<ul>
+<li><code>lc:</code> line color of fitting plane</li>
+<li><code>lt:</code> line style of fitting plane</li>
+<li><code>rc:</code> flag to set relative coordinate for comment position</li>
+<li><code>cf:</code> set tag of macro variable to store fitting coefficients</li>
+</ul>
+<h3 id="option-with-two-arguments">option with two arguments</h3>
+<blockquote>
+<p>arguments is separated by comma with no spaces.</p>
+</blockquote>
+<ul>
+<li>cp: comment position of fitting information</li>
+</ul>
+<p>for example, see <a href="../ex/ex10.html">ex10</a></p>
+</body>
+</html>

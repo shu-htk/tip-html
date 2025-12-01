@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cat</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cat">cat</h1>
+<pre><code>
+tip&gt; cat
+usage: cat v1,v2,... [&gt;|&gt;&gt;] [v] [(opt)]
+ concatenate data v1,v2,.. and print contents
+ redirect to the data v:
+   &gt;  : over write
+   &gt;&gt; : append
+ option:
+   nr:N0,N1 : choose index number range from N0 to N1
+ </code></pre>
+<h2 id="option">option</h2>
+<h3 id="option-with-two-arguments">option with two arguments</h3>
+<blockquote>
+<p>arguments is separated by comma with no spaces.</p>
+</blockquote>
+<ul>
+<li><code>nr:</code> set data range of output (1st data is begin from 1)</li>
+</ul>
+<blockquote>
+<p>if <code>nr:</code> is not specified (default <code>nr:0,-1</code>), all data is outputted<br />
+if <code>nr:N,-1</code>, it it outputted from N to end</p>
+</blockquote>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>fs:</code> set field separator of output (console only)</li>
+</ul>
+<p>example using <code>fs:</code>, <code>nr:</code></p>
+<pre><code>
+tip&gt; set x=range(5, 0.1, 0.5)
+tip&gt; cat x
+x : data(num) :  0.1 0.2 0.3 0.4 0.5
+
+tip&gt; cat x (fs:&quot;\n&quot;)
+x : data(num) :
+0.1
+0.2
+0.3
+0.4
+0.5
+
+tip&gt; cat x (fs:&quot;\n&quot; nr:2,4)    ;# output from 2nd to 4th data 
+x : data(num) :
+0.2
+0.3
+0.4
+
+tip&gt; cat x (fs:&quot;\n&quot; nr:2,-1)   ;# output from 2nd to end
+x : data(num) :
+0.2
+0.3
+0.4
+0.5
+ </code></pre>
+<p>example of concatenating data</p>
+<pre><code>
+tip&gt; set x1={1,2,3}
+tip&gt; set x2={4,5,6}
+tip&gt; cat x?
+x1 : data(num) :  1 2 3
+x2 : data(num) :  4 5 6
+
+tip&gt; cat x1,x2 &gt; x3  ;# redirected to x3
+tip&gt; cat x3
+x3 : data(num) :  1 2 3 4 5 6
+
+tip&gt; cat x1,x2 &gt;&gt; x3  ;# appended to x3
+tip&gt; cat x3
+x3 : data(num) :  1 2 3 4 5 6 1 2 3 4 5 6
+
+tip&gt; cat x2,x1 &gt; x3 ;# order of x1 and x2 is swapped
+tip&gt; cat x3
+x3 : data(num) :  4 5 6 1 2 3
+ </code></pre>
+<pre><code>
+tip&gt; set x1={1,2,3}
+tip&gt; set x2={a,b,c}
+tip&gt; set x3={4,5,6}
+tip&gt; cat x?
+x1 : data(num) :  1 2 3
+x2 : data(str) :  a b c
+x3 : data(num) :  4 5 6
+
+tip&gt; cat x1,x2,x3 &gt; x4
+incompatible type [str]!=[num] skipped.
+tip&gt; cat x4
+x4 : data(num) :  1 2 3 4 5 6
+
+tip&gt; cat x2,x1,x3 &gt; x4
+incompatible type [num]!=[str] skipped.
+incompatible type [num]!=[str] skipped.
+tip&gt; cat x4
+x4 : data(str) :  a b c
+ </code></pre>
+</body>
+</html>
