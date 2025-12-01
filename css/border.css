@@ -1,0 +1,26 @@
+body {
+  background-color: #fdf6e3;
+  margin: 40px;
+  padding: 20px;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+table, th, td {
+  background-color: #eee8d5;
+  border: 1px solid gray;
+  border-collapse: collapse;
+  padding: 6px;
+}
+code {
+  background-color: #f6f8fa;
+  padding: 6px;
+  border-radius: 3px;
+}
+pre {
+  overflow-x: auto;
+  padding: 2px 16px;
+  background-color: #f6f8fa;
+  border: 2px solid gray;
+  border-radius: 6px;
+  line-height: 1.45;
+}
