@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>symb</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,27 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
+<h1 id="symb">symb</h1>
+<pre><code>
+tip&gt; symb
+usage: symb x y [(opt)]
+ </code></pre>
+<p>put a symbol mark at the point (x,y).</p>
+<h2 id="option">option</h2>
+<h3 id="option-with-single-argument">option with single argument</h3>
 <ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
+<li><code>sc:</code> symbol color</li>
+<li><code>st:</code> symbol style</li>
+<li><code>ss:</code> symbol size, (default is 1)</li>
 </ul>
-<h2 id="install">Install</h2>
-<ul>
-<li><a href="en/install.html">how to install</a></li>
-</ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<h2 id="list-of-symbol-name">list of symbol name</h2>
+<pre><code>
+tip&gt; opt symbol
+names of the symbol :
+ non(0), dot(1), plus(pls,2), star(str,3), arc(4), cross(crs,5), square(sqr,6),
+ triangle(tri,7), arccross(acc,8), arcdot(acd,9), square2(sq2,10),
+ diamond(dia,11), star2(st2,12), square3(sq3,13), cross2(cr2,14), star3(st3,15),
+ blacksqr,(bsq,16)
+ </code></pre>
 </body>
 </html>

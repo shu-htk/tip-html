@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>read</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="read">read</h1>
+<pre><code>
+tip&gt; read
+usage: read v1,v2,... file_name [(opt)]
+       read v1,v2,... `command` [(opt)]
+ where v1,v2,... are list of data to read
+ if `command` specified instead of file_name,
+ data are read from the out put of the system command
+ </code></pre>
+<h2 id="option">option</h2>
+<h3 id="option-with-two-arguments">option with two arguments</h3>
+<blockquote>
+<p>arguments is separated by comma with no spaces.</p>
+</blockquote>
+<ul>
+<li><code>nr:</code> set range of line number to read (1st line is begin from 1)</li>
+</ul>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>fs:</code> field separator</li>
+</ul>
+<h2 id="file-format">file format</h2>
+<p>data file is multi column text separated by field separator. The default field separator is a space character.</p>
+<p>in the case the number of column is M,</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">v1</th>
+<th style="text-align: center;">v2</th>
+<th style="text-align: center;">…</th>
+<th style="text-align: center;">vM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">v1(1)</td>
+<td style="text-align: center;">v2(1)</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">vM(1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">v1(2)</td>
+<td style="text-align: center;">v2(2)</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">vM(2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+</tbody>
+</table>
+<h2 id="naming-rule-of-valiable-list">naming rule of valiable list</h2>
+<p>If it is specified a list of N variables, and file has M columns,</p>
+<pre><code>
+ read v1,v2,...,vN  file_of_M_column.dat
+ </code></pre>
+<ul>
+<li>if N &lt; M, last n columns are named as vN1, … , vNn (n=M-N+1)</li>
+<li>if N &gt; M, vn, … , VN are ignored (n=M+1)</li>
+</ul>
+<h2 id="read-the-output-of-the-system-command">read the output of the system command</h2>
+<blockquote>
+<p>If the filename is a command enclosed in backquotes, its output is read through the pipe.</p>
+</blockquote>
+<p>example,</p>
+<pre><code>
+tip&gt; set id={1,2,3,4,5}
+tip&gt; set name={A,B,C,D,E}
+tip&gt; set val1={11,21,31,41,51}
+tip&gt; set val2={12,22,32,42,52}
+tip&gt; set val3={13,23,33,43,53}
+tip&gt; cat id,name,val*
+id : data(num) :  1 2 3 4 5
+name : data(str) :  A B C D E
+val1 : data(num) :  11 21 31 41 51
+val2 : data(num) :  12 22 32 42 52
+val3 : data(num) :  13 23 33 43 53
+
+tip&gt; write id,name,val* test.dat  ;# save variables to the file
+tip&gt; rm *  ;# remove all variables
+
+tip&gt; read x test.dat  ;# xn (n=1,2,3,4,5) are created
+tip&gt; cat x*
+x1 : data(num) :  1 2 3 4 5
+x2 : data(str) :  A B C D E
+x3 : data(num) :  11 21 31 41 51
+x4 : data(num) :  12 22 32 42 52
+x5 : data(num) :  13 23 33 43 53
+
+tip&gt; read a,b,c,d,e,f test.dat  ;# f is ignored
+tip&gt; cat [a-f]
+a : data(num) :  1 2 3 4 5
+b : data(str) :  A B C D E
+c : data(num) :  11 21 31 41 51
+d : data(num) :  12 22 32 42 52
+e : data(num) :  13 23 33 43 53
+
+tip&gt; read id,name,v test.dat   ;# vn (n=1,2,3) are created
+tip&gt; cat id,name,v*
+id : data(num) :  1 2 3 4 5
+name : data(str) :  A B C D E
+v1 : data(num) :  11 21 31 41 51
+v2 : data(num) :  12 22 32 42 52
+v3 : data(num) :  13 23 33 43 53
+
+tip&gt; read x `tail -3 test.dat`  ;# read the output of the system command
+tip&gt; cat x*
+x1 : data(num) :  3 4 5
+x2 : data(str) :  C D E
+x3 : data(num) :  31 41 51
+x4 : data(num) :  32 42 52
+x5 : data(num) :  33 43 53
+
+tip&gt; read x test.dat (nr:2,4)   ;# read line which number is from 2 to 4
+tip&gt; cat x*
+x1 : data(num) :  2 3 4
+x2 : data(str) :  B C D
+x3 : data(num) :  21 31 41
+x4 : data(num) :  22 32 42
+x5 : data(num) :  23 33 43
+ </code></pre>
+</body>
+</html>

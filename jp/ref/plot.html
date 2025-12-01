@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>plot</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="plot">plot</h1>
+<pre><code>
+tip&gt; plot
+usage: plot [x] y [(opt)]
+ plot the 2D-graph of data x and y.
+ if data x is not specified the index data &#39;y_n&#39; is created
+ then &#39;plot y_n y&#39; is done.
+ </code></pre>
+<h2 id="option">option</h2>
+<h3 id="option-with-single-argument">option with single argument</h3>
+<ul>
+<li><code>gt:</code> graph type (slope, bin1, bin2) default is slope.</li>
+<li><code>lc:</code> line color</li>
+<li><code>lt:</code> line style</li>
+<li><code>lw:</code> line width, (0=not draw, default is 1)</li>
+<li><code>sc:</code> symbol color</li>
+<li><code>st:</code> symbol style</li>
+<li><code>ss:</code> symbol size, (default is 1)</li>
+<li><code>rp:</code> replot flag</li>
+<li><code>xt:</code> x-tick interval</li>
+<li><code>yt:</code> y-tick interval</li>
+<li><code>xn:</code> x-subtick num</li>
+<li><code>yn:</code> y-subtick num</li>
+<li><code>xs:</code> x-axis scale, (lin, log)</li>
+<li><code>ys:</code> x-axis scale, (lin, log)</li>
+<li><code>xm:</code> x margin factor, (default is 0.02)</li>
+<li><code>ym:</code> y margin factor, (default is 0.1)</li>
+<li><code>gd:</code> set flag to draw grid line, (0=not draw, 1=draw)</li>
+<li><code>bo:</code> set box drawing order, (0=horizontal, 1=vertical)</li>
+<li><code>bp:</code> set box position, (from 1 to max number of divided frame)</li>
+<li><code>mv:</code> moving average number</li>
+</ul>
+<blockquote>
+<p>in <code>xm:</code> x margin means distance between maximum/minimum point of data to left/right edge of x-axis</p>
+</blockquote>
+<blockquote>
+<p>in <code>ym:</code> y margin means distance between maximum/minimum point of data to down/up edge of y-axis</p>
+</blockquote>
+<h3 id="option-with-two-arguments">option with two arguments</h3>
+<blockquote>
+<p>arguments is separated by comma with no spaces.</p>
+</blockquote>
+<ul>
+<li><code>xr:</code> x-axis range (default 0,0 : range is automatically calculated)</li>
+<li><code>yr:</code> x-axis range (default 0,0 : range is automatically calculated)</li>
+</ul>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>tl:</code> title (see <a href="title.html">title</a>)</li>
+<li><code>xl:</code> x-label (see <a href="xlab.html">xlab</a>)</li>
+<li><code>yl:</code> y-label (see <a href="ylab.html">ylab</a>)</li>
+<li><code>tf:</code> x-axis time format (see <a href="tfmt.html">tfmt</a>)</li>
+<li><code>cc:</code> cut condition (see <a href="cut.html">cut</a>)</li>
+</ul>
+<p>example</p>
+<pre><code>
+@ pi2=3.14159265*2
+set t=range(50,0,[pi2])
+set v=sin(t)
+
+opt (gd:1 lw:0 st:pls sc:red)
+div 1 2
+
+title &quot;v_n vs v&quot;
+plot v          ;# index data &#39;v_n&#39; is automatically generated
+
+title &quot;t vs v&quot;
+plot t v
+ </code></pre>
+</body>
+</html>

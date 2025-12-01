@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>calc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="calc">calc</h1>
+<pre><code>
+tip&gt; calc
+usage: calc [expression]
+ </code></pre>
+<p>this command show the result of calculation expression</p>
+<p>where calculation expression is appear in</p>
+<ul>
+<li><a href="var.html">@</a> x = expr<br />
+</li>
+<li><a href="set.html">set</a> x = expr<br />
+</li>
+<li><a href="mset.html">mset</a> z = expr</li>
+</ul>
+<h2 id="operators">operators</h2>
+<ul>
+<li><strong>unary operator</strong></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">function</th>
+<th style="text-align: center;">operator</th>
+<th style="text-align: center;">notation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">positive</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+ X</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">negative</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">- X</td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+tip&gt; calc +3
+[+3] -&gt; [3]
+
+tip&gt; calc 2 * +3
+[2 * +3] -&gt; [6]
+
+tip&gt; calc -3
+[-3] -&gt; [-3]
+
+tip&gt; calc 2 * -3
+[2 * -3] -&gt; [-6]
+ </code></pre>
+<ul>
+<li><strong>binary operator</strong></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">function</th>
+<th style="text-align: center;">operator</th>
+<th style="text-align: center;">notation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">multiply</td>
+<td style="text-align: center;">*</td>
+<td style="text-align: center;">X * Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">divide</td>
+<td style="text-align: center;">/</td>
+<td style="text-align: center;">X / Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">remainder</td>
+<td style="text-align: center;">%</td>
+<td style="text-align: center;">X % Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">add</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">X + Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">subtract</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">X - Y</td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+tip&gt; @ x=2
+tip&gt; @ y=3
+
+tip&gt; calc [x]+[y]
+[2+3] -&gt; [5]
+
+tip&gt; calc [x]*[y]
+[2*3] -&gt; [6]
+
+tip&gt; calc [x]/[y]
+[2/3] -&gt; [0.66666666667]
+
+tip&gt; calc [x]%[y]
+[2%3] -&gt; [2]
+
+tip&gt; calc [x]+[y]
+[2+3] -&gt; [5]
+
+tip&gt; calc [x]-[y]
+[2-3] -&gt; [-1]
+ </code></pre>
+<h2 id="mathematical-functions">mathematical functions</h2>
+<p><code>abs</code>,<code>sqrt</code>,<code>exp</code>,<code>log</code>,<code>log10</code>,<code>cos</code>,<code>acos</code>,<code>sin</code>,<code>asin</code>,<code>tan</code>,<code>atan</code>,<code>cosh</code>,<code>sinh</code>,<code>tanh</code>,<code>floor</code>,<code>pow</code>,<code>atan2</code></p>
+<p>see <a href="../ex/ex02.html">ex02: Plot mathematical functions</a></p>
+</body>
+</html>

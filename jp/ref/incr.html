@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>incr</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,40 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
+<h1 id="section">++, –</h1>
+<pre><code>
+tip&gt; ++
+usage: ++var
+ increment numerical macro variable
+ </code></pre>
+<pre><code>
+tip&gt; --
+usage: --var
+ decrement numerical macro variable
+ </code></pre>
 <ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
+<li>example 1</li>
 </ul>
-<h2 id="install">Install</h2>
+<pre><code>
+tip&gt; @ x=0.1
+tip&gt; ls x
+x : number [0.1]
+tip&gt; ++x
+tip&gt; ls x
+x : number [1.1]
+tip&gt; --x
+tip&gt; ls x
+x : number [0.1]
+ </code></pre>
 <ul>
-<li><a href="en/install.html">how to install</a></li>
+<li>example 2</li>
 </ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<pre><code>
+tip&gt; @ n=1; for s (a b c); prn [s][n]; ++n; end
+a1
+b2
+c3
+ </code></pre>
+<p>see also <a href="loop.html">loop</a></p>
 </body>
 </html>

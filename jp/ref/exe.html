@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>exe</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="exe">exe</h1>
+<pre><code>
+tip&gt; exe
+usage: exe [macro_file] [arg1,arg2,...] [(opt)]
+ execute macro_file
+ arguments are referenced as macro variables
+ they are named like x1=val,x2=val2,...
+ if it is specified only values like val1,val2,...
+ they are named $1=val1,$2=val2,...
+ number of argumnts is named $#
+ </code></pre>
+<h2 id="option">option</h2>
+<ul>
+<li><code>dm:</code> set flag of debug-mode</li>
+</ul>
+<h2 id="execute-macro-file-with-arguments">Execute macro file with arguments</h2>
+<blockquote>
+<p>arguments are separated by commas with no spaces.</p>
+</blockquote>
+<p>see also <a href="args.html">args</a></p>
+<h3 id="named-arguments">(1) Named arguments</h3>
+<p>example macro file : <code>gaus.tip</code></p>
+<pre><code>
+args title=&quot;test&quot;,ndata=1000,sigma=1,mean=0  ;# default parameters
+
+title &quot;[title]&quot;
+set x=random([ndata],gaus,[sigma],[mean])
+hplot x (gd:1)
+stat x (rc:1 cp:0.65,0.95)
+ </code></pre>
+<p>executting <code>gaus.tip</code> with different parameters</p>
+<pre><code>
+tip&gt; exe gaus.tip            ;# using default parameters
+@ Statistics:
+ entry=1000
+ max= 3.36499
+ min= -3.65553
+ mean= 0.032266
+ rms= 1.01432
+ 
+tip&gt; exe gaus.tip title=&quot;param set 1&quot;,ndata=100000,sigma=0.1,mean=5
+@ Statistics:
+ entry=100000
+ max= 5.41261
+ min= 4.57704
+ mean= 4.9993
+ rms= 0.0999921
+
+tip&gt; exe gaus.tip title=&quot;param set 2&quot;,ndata=200000,sigma=0.2,mean=3
+@ Statistics:
+ entry=200000
+ max= 3.89212
+ min= 2.0552
+ mean= 3.00067
+ rms= 0.200458
+ </code></pre>
+<h3 id="unnamed-arguments">(2) Unnamed arguments</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">variable name</th>
+<th style="text-align: center;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">$#</td>
+<td style="text-align: center;">number of arguments</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">$1</td>
+<td style="text-align: center;">1st argument</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">2|2<em>n</em><em>d</em><em>a</em><em>r</em><em>g</em><em>u</em><em>m</em><em>e</em><em>n</em><em>t</em>||...|...||</span>N</td>
+<td style="text-align: center;">Nth argument</td>
+</tr>
+</tbody>
+</table>
+<p>example macro file : <code>args.tip</code></p>
+<pre><code>
+if [$#]
+   do n 1 [$#]
+      prn arg [n] is [$[n]]
+   end
+else   
+   prn no args
+fi
+ </code></pre>
+<p>executting <code>args.tip</code> with different number of arguments</p>
+<pre><code>
+tip&gt; exe args.tip
+no args
+
+tip&gt; exe args.tip 1,2,3
+arg 1 is 1
+arg 2 is 2
+arg 3 is 3
+
+tip&gt; exe args.tip 1,2,3,a,b,c
+arg 1 is 1
+arg 2 is 2
+arg 3 is 3
+arg 4 is a
+arg 5 is b
+arg 6 is c
+ </code></pre>
+<h2 id="execute-macro-file-with-debug-mode">Execute macro file with debug-mode</h2>
+<p>example macro file : <code>test.tip</code></p>
+<pre><code>
+@ s=abc
+set x={1,2,3}
+ </code></pre>
+<p>executing <code>test.tip</code></p>
+<pre><code>
+tip&gt; rm *
+tip&gt; exe test.tip
+tip&gt; ls *               ;# nothing to show
+
+tip&gt; exe test.tip (dm:1)   ;# with debug-mode option
+tip&gt; ls *               ;# variables defined in the macro file can be shown
+$# : number [0]
+s : string [abc]
+x : data(num) : size=3
+
+tip&gt; cat x
+x : data(num) :  1 2 3
+ </code></pre>
+</body>
+</html>

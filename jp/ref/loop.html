@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>loop</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="for-do-while-end">for, do, while, end</h1>
+<h2 id="usage">usage</h2>
+<ul>
+<li><strong>for-loop</strong></li>
+</ul>
+<pre><code>
+tip&gt; for
+usage: for s (a b ...); ...; end
+ </code></pre>
+<p>It is assigned for each value listed in the brackets ( ) to the macro variable ‘s’.</p>
+<ul>
+<li><strong>do-loop</strong></li>
+</ul>
+<pre><code>
+tip&gt; do
+usage: do n N1 N2 [dN]; ...; end
+ </code></pre>
+<p>It is assigned numerical value which range is from N1 to N2 incremented dN to the macro variable ‘n’.<br />
+The value can take floating point number. If dN is not specified, it is incremented +1</p>
+<ul>
+<li><strong>while-loop</strong></li>
+</ul>
+<pre><code>
+tip&gt; while
+usage: while expr; ...; end
+ </code></pre>
+<p>It is evaluated the <a href="logic.html">logical expression</a> for each time, if it is is true continue, if false break.</p>
+<h2 id="example">example</h2>
+<ul>
+<li><strong>for-loop</strong></li>
+</ul>
+<pre><code>
+for func (sin cos exp)
+  for x (1 2)
+    @ y = [func]([x])
+    prn [func]([x]) = [y]
+  end
+end
+ </code></pre>
+<p>result</p>
+<pre><code>
+sin(1) = 0.84147098481
+sin(2) = 0.90929742683
+cos(1) = 0.54030230587
+cos(2) = -0.41614683655
+exp(1) = 2.7182818285
+exp(2) = 7.3890560989
+ </code></pre>
+<ul>
+<li><strong>do-loop</strong></li>
+</ul>
+<p>incremental loop with continue and break</p>
+<pre><code>
+do n 0 10
+  if 1&lt;[n]&lt;5; continue; fi
+  if [n]&gt;7; break; fi
+  prn [n]
+end
+ </code></pre>
+<p>result</p>
+<pre><code>
+0
+1
+5
+6
+7
+ </code></pre>
+<p>decremental loop</p>
+<pre><code>
+do x 1 0 -0.3; prn [x]; end
+ </code></pre>
+<p>result</p>
+<pre><code>
+1
+0.7
+0.4
+0.1
+ </code></pre>
+<ul>
+<li><strong>while-loop</strong></li>
+</ul>
+<pre><code>
+@ n=0
+@ s=a
+while [s] != aaaa
+  prn [n] [s]
+  @ s += a   ;# equivalent to @ s = [s]a
+  ++n
+  if [n]&gt;100; break; fi  ;# to avoid infinity loop in case bad condition
+end
+ </code></pre>
+<p>result</p>
+<pre><code>
+0 a
+1 aa
+2 aaa
+ </code></pre>
+<p>see also <a href="if_fi.html">if,fi</a> and <a href="logic.html">logic</a></p>
+</body>
+</html>

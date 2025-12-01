@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>hfit</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,33 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
+<h1 id="hfit">hfit</h1>
+<pre><code>
+tip&gt; hfit
+usage: hfit v func [(opt)]
+ you should do the &#39;hplot&#39; before this command.
+ &#39;hplot&#39; create a bin data v_hx, an entry data v_hy
+ then &#39;fit v_hx v_hy func&#39; is done.
+ see the command &#39;fit&#39; for the fitting functions.
+ </code></pre>
+<p>It fits the curve to histogram of data v after <a href="hplot.html">hplot</a> command. The fitting information is outputted to console and fitting curve is drawn on the existing graph. If you specify option <code>cp:X,Y</code>, the fitting information is drawn in the graph at (X,Y).</p>
+<h2 id="fitting-functions">fitting functions</h2>
+<p>see <a href="fit.html">fit</a></p>
+<h2 id="option">option</h2>
+<h3 id="option-with-single-argument">option with single argument</h3>
 <ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
+<li><code>lc:</code> line color of fitting curve</li>
+<li><code>lt:</code> line style of fitting curve</li>
+<li><code>rc:</code> flag to set relative coordinate for comment position</li>
+<li><code>cf:</code> set tag of macro variable to store fitting coefficients</li>
 </ul>
-<h2 id="install">Install</h2>
+<h3 id="option-with-two-arguments">option with two arguments</h3>
+<blockquote>
+<p>arguments is separated by comma with no spaces.</p>
+</blockquote>
 <ul>
-<li><a href="en/install.html">how to install</a></li>
+<li><code>cp:</code> comment position of fitting information</li>
 </ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<p>for example, see <a href="../ex/ex04.html">ex04</a>, <a href="../ex/ex20.html">ex20</a></p>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>random</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,35 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
+<h1 id="random">random</h1>
+<pre><code>
+tip&gt; random
+usage: set v = random(N,uni[,x0,x1]) [(opt)]
+       set v = random(N,gaus[,sgm,mean]) [(opt)]
+       set v = random(N,exp[,tau]) [(opt)]
+ set N-size data with random numbers.
+  uni,x0,x1 : uniform distribution [x0:x1] (default x0=0,x1=1)
+  gaus,sgm,mean : gauss distribution (default sgm=1,mean=0)
+  exp,tau   : exponential distribution (default tau=1)
+ option to set random seed:
+  sd:N     : set integer value N
+  sd:utime : set unix time(sec)
+  sd:clock : set clock(nsec) (this is default)
+  sd:dev   : set non-deterministic device (c++11)
+ </code></pre>
+<h2 id="option">option</h2>
 <ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
+<li><code>sd:</code> set integer value as a random seed<br />
+&gt; if value is “utime” set unix epoch time(sec)<br />
+&gt; if value is “clock” set computer clock(nsec)</li>
 </ul>
-<h2 id="install">Install</h2>
-<ul>
-<li><a href="en/install.html">how to install</a></li>
-</ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<h2 id="uniform-distribution">Uniform distribution</h2>
+<p>uniform random number in the range [x0,x1]</p>
+<h2 id="gaussian-distribution-box-muller-transform-method">Gaussian distribution (Box-Muller transform Method)</h2>
+<p><em>sigma * sqrt(-2*log(a)) * sin(2*PI*b) + mean</em>   : a,b is independent uniform random number [0,1]</p>
+<h2 id="exponential-distribution-inverse-transform-method">Exponential distribution (Inverse Transform Method)</h2>
+<p>if tau&gt;0 ;  <em>-log(a) / tau</em>   : a is uniform random number (0,1]<br />
+if tau&lt;0 ;  <em>log(a) / tau</em><br />
+if tau=0 ;  <em>1</em></p>
 </body>
 </html>

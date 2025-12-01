@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>line</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,19 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
+<h1 id="line">line</h1>
+<pre><code>
+tip&gt; line
+usage: line x0 x1 y0 y1 [(opt)]
+ </code></pre>
+<p>draw a line from (x0,y0) to (x1,y1), where x0, x1, y0, y1 are scalar value.</p>
+<h2 id="option">option</h2>
 <ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
+<li><code>lc:</code> set line color</li>
+<li><code>lt:</code> set line style</li>
+<li><code>lw:</code> set line width, 0=not draw, 1=draw</li>
+<li><code>ae:</code> draw arrow edge(0=non,1=end,2=begin,3=both)</li>
 </ul>
-<h2 id="install">Install</h2>
-<ul>
-<li><a href="en/install.html">how to install</a></li>
-</ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<p>for example, see <a href="../ex/ex03.html">ex03</a>, <a href="../ex/ex06.html">ex06</a>, <a href="../ex/ex09.html">ex09</a>, <a href="../ex/ex17b.html">ex17b</a>, <a href="../ex/ex21.html">ex21</a></p>
 </body>
 </html>

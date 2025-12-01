@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>logic</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="logic">logic</h1>
+<pre><code>
+tip&gt; logic
+usage: logic [expression]
+ </code></pre>
+<p>this command show the result of logical expression</p>
+<p>where logical expression is appear in</p>
+<ul>
+<li><a href="if_fi.html">if</a> expr</li>
+<li><a href="if_fi.html">elif</a> expr</li>
+<li><a href="loop.html">while</a> expr</li>
+<li><a href="var.html">@</a> a = expr ? : b : c</li>
+<li><a href="cut.html">cut</a> a,b,c,… “expr”</li>
+</ul>
+<h2 id="logical-expression">Logical Expression</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">function</th>
+<th style="text-align: center;">standard expr</th>
+<th style="text-align: center;">simplified expr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">equal</td>
+<td style="text-align: center;">A == B</td>
+<td style="text-align: center;">A = B</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">not equal</td>
+<td style="text-align: center;">A != B</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">less than</td>
+<td style="text-align: center;">A &lt; B</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">less than equal</td>
+<td style="text-align: center;">A &lt;= B</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">more than</td>
+<td style="text-align: center;">A &gt; B</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">more than equal</td>
+<td style="text-align: center;">A &gt;= B</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">logical and</td>
+<td style="text-align: center;">expr1 &amp;&amp; expr2</td>
+<td style="text-align: center;">expr1 &amp; expr2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">logical or</td>
+<td style="text-align: center;">expr1 || expr2</td>
+<td style="text-align: center;">expr1 | expr2</td>
+</tr>
+</tbody>
+</table>
+<p>example</p>
+<pre><code>
+tip&gt; logic 1&lt;2
+[1&lt;2] -&gt; num_logic -&gt; [1]
+
+tip&gt; logic 1==2 &amp;&amp; 3==3     ;# standard expr
+[1==2 &amp;&amp; 3==3] -&gt; num_logic -&gt; [0]
+
+tip&gt; logic 1=2 &amp; 3=3        ;# simplified expr
+[1=2 &amp; 3=3] -&gt; num_logic -&gt; [0]
+
+tip&gt; logic 1=2 | 3=3
+[1=2 | 3=3] -&gt; num_logic -&gt; [1]
+
+tip&gt; logic A=B
+[A=B] -&gt; str_logic -&gt; [0]
+
+tip&gt; logic A=B | B=B
+[A=B | B=B] -&gt; str_logic -&gt; [1]
+ </code></pre>
+<h2 id="extended-logical-expression">Extended Logical Expression</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">function</th>
+<th style="text-align: center;">extended expr</th>
+<th style="text-align: center;">standard expr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">series equal</td>
+<td style="text-align: center;">A=B=C …</td>
+<td style="text-align: center;">(A==B) &amp;&amp; (B==C) &amp;&amp; …</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">series not equal</td>
+<td style="text-align: center;">A!=B!=C …</td>
+<td style="text-align: center;">(A!=B) &amp;&amp; (B!=C) &amp;&amp; …</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">series less than</td>
+<td style="text-align: center;">A&lt;B&lt;C …</td>
+<td style="text-align: center;">(A&lt;B) &amp;&amp; (B&lt;c) &amp;&amp; …</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">series less than equal</td>
+<td style="text-align: center;">A&lt;=B&lt;=C …</td>
+<td style="text-align: center;">(A&lt;=B) &amp;&amp; (b&lt;=C) &amp;&amp; …</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">series more than</td>
+<td style="text-align: center;">A&gt;B&gt;C …</td>
+<td style="text-align: center;">(A&gt;B) &amp;&amp; (B&gt;c) &amp;&amp; …</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">series more than equal</td>
+<td style="text-align: center;">A&gt;=B&gt;=C …</td>
+<td style="text-align: center;">(A&gt;=B) &amp;&amp; (b&gt;=C) &amp;&amp; …</td>
+</tr>
+</tbody>
+</table>
+<p>example</p>
+<pre><code>
+tip&gt; logic 1&lt;2&lt;3&lt;=3     ;# same to 1&lt;2 &amp;&amp; 2&lt;3 &amp;&amp; 3&lt;=3
+[1&lt;2&lt;3&lt;=3] -&gt; num_logic -&gt; [1]
+
+tip&gt; logic 1&lt;5&lt;3&lt;=3     ;# same to 1&lt;5 &amp;&amp; 5&lt;3 &amp;&amp; 3&lt;=3
+[1&lt;5&lt;3&lt;=3] -&gt; num_logic -&gt; [0]
+
+tip&gt; logic A=A!=B       ;# same to A==A &amp;&amp; A!=B
+[A=A!=B] -&gt; str_logic -&gt; [1]
+ </code></pre>
+<h2 id="wild-card-matching-for-string-logic-only">Wild Card Matching (for string logic only)</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">match to</th>
+<th style="text-align: center;">wild card</th>
+<th style="text-align: center;">usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">any string</td>
+<td style="text-align: center;">*</td>
+<td style="text-align: center;">string = str*</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">any character</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">string = s?ring</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">one of the list of chars</td>
+<td style="text-align: center;">[abc..], [a-z]</td>
+<td style="text-align: center;">string = [a-z]trin[efg]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>wild cards should be <strong>at the right part</strong> of the comparison</p>
+</blockquote>
+<blockquote>
+<p>wild card is implemented using <code>fnmatch()</code></p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; @ s=ABC
+
+tip&gt; logic [s]=A*
+[ABC=A*] -&gt; str_logic -&gt; [1]
+
+tip&gt; logic A*=[s]   ;# NG : wild card should be at the right
+[A*=ABC] -&gt; str_logic -&gt; [0]
+
+tip&gt; logic [s]=B*
+[ABC=B*] -&gt; str_logic -&gt; [0]
+
+tip&gt; logic [s]=?BC
+[ABC=?BC] -&gt; str_logic -&gt; [1]
+
+tip&gt; logic [s]=[A-Z]*
+[ABC=[A-Z]*] -&gt; str_logic -&gt; [1]
+ </code></pre>
+<h2 id="list-matching-for-both-of-numerical-and-string-logic">List Matching (for both of numerical and string logic)</h2>
+<ul>
+<li><code>x = {expr1,expr2,...}</code></li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">match to</th>
+<th style="text-align: center;">list matching</th>
+<th style="text-align: center;">standard expr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">one of the list of exprs</td>
+<td style="text-align: center;">x = {expr1, expr2, …}</td>
+<td style="text-align: center;">(x == expr1) || (x == expr2) || …</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>x != {expr1,expr2,...}</code></li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">not match to</th>
+<th style="text-align: center;">list not-matching</th>
+<th style="text-align: center;">standard expr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">all of the list of exprs</td>
+<td style="text-align: center;">x != {expr1, expr2, …}</td>
+<td style="text-align: center;">(x != expr1) &amp;&amp; (x != expr2) &amp;&amp; …</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the list matching should be <strong>at the right part</strong> of the comparison</p>
+</blockquote>
+<blockquote>
+<p>the list matching <strong>can not be concatenate</strong> to the other expression</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; logic 6 = {1+2, 2*3}
+[6 = {1+2, 2*3}] -&gt; num_logic -&gt; [1]
+
+tip&gt; logic {1+2, 2*3} = 6
+[{1+2, 2*3} = 6] -&gt; str_logic -&gt; [0]  ;# NG: list-matching should be at the right
+
+tip&gt; logic abc == {a?, b*, [a-z]??}
+[abc == {a?, b*, [a-z]??}] -&gt; str_logic -&gt; [1]
+
+tip&gt; logic aaabbb = aaa{bbb,ccc}    ;# NG: it can&#39;t be concatenate to the other
+[aaabbb = aaa{bbb,ccc}] -&gt; str_logic -&gt; [0]
+ </code></pre>
+</body>
+</html>

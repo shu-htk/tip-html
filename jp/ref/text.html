@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>text</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,25 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
+<h1 id="text">text</h1>
+<pre><code>
+tip&gt; text
+usage: text x y &quot;strings&quot; [(opt)]
+escape sequences in the text strings:
+ #u  : switch to the superscript (ended with #d)
+ #d  : switch to the subscript (ended with #u)
+ #g  : next one character become Greek
+ #fn : switch to normal (sans-serif) font
+ #fr : switch to Roman (serif) font
+ #fi : switch to Italic font
+ </code></pre>
+<h2 id="option">option</h2>
 <ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
+<li><code>tc:</code> text color, (default is black)</li>
+<li><code>tp:</code> text pos(0:L to 1:R), (default is 0)</li>
+<li><code>tr:</code> text rotation(deg), (default is 0)</li>
+<li><code>ts:</code> text size, (default is 1)</li>
 </ul>
-<h2 id="install">Install</h2>
-<ul>
-<li><a href="en/install.html">how to install</a></li>
-</ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<p>for example see <a href="../ex/ex03.html">ex03</a>, <a href="../ex/ex05.html">ex05</a>, <a href="../ex/ex06.html">ex06</a></p>
 </body>
 </html>

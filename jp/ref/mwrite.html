@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mwrite</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mwrite">mwrite</h1>
+<pre><code>
+tip&gt; mwrite
+usage: mwrite x,y,z mesh-file [(opt)]
+ write data and mesh-data
+ where x is data of size N.
+       y is data of size M.
+       z is mesh-data of size N*M.
+ </code></pre>
+<h2 id="option">option</h2>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>fs:</code> field separator</li>
+</ul>
+<h2 id="file-format">file format</h2>
+<p>data file is 3 column text separated by field separator. The default field separator is a space character.</p>
+<table>
+<thead>
+<tr class="header">
+<th>x</th>
+<th>y</th>
+<th>z</th>
+<th>comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>x1</td>
+<td>y1</td>
+<td>z11</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>x2</td>
+<td>y1</td>
+<td>z21</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>xN</td>
+<td>y1</td>
+<td>zN1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>here is a space line</td>
+</tr>
+<tr class="even">
+<td>x1</td>
+<td>y2</td>
+<td>z12</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>x2</td>
+<td>y2</td>
+<td>z22</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>xN</td>
+<td>y2</td>
+<td>zN2</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td>here is a space line</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>x1</td>
+<td>yM</td>
+<td>z1M</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>x2</td>
+<td>yM</td>
+<td>z2M</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>xN</td>
+<td>yM</td>
+<td>zNM</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="plotting-the-mesh-file-using-gnuplot">plotting the mesh file using Gnuplot</h2>
+<p>The data file written by <code>mwrite</code> can be plotted by Gnuplot.</p>
+<p>example</p>
+<pre><code>
+$ tip
+tip&gt; set x = range(32,-3.2,3.2)
+tip&gt; set y = range(30,-3,3)
+tip&gt; mset z = log(1+2*x*x+3*y*y)
+tip&gt; mwrite x,y,z mesh.dat
+tip&gt; q
+
+$ gnuplot
+gnuplot&gt; splot &#39;mesh.dat&#39; w l
+ </code></pre>
+</body>
+</html>

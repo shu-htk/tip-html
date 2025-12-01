@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>elem</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,37 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
-</ul>
-<h2 id="install">Install</h2>
-<ul>
-<li><a href="en/install.html">how to install</a></li>
-</ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<h1 id="elem">elem</h1>
+<pre><code>
+tip&gt; elem
+usage: elem x = v(N)
+ copy Nth element of data v to the macro variable x.
+ (N begin from 1)
+ </code></pre>
+<p>see also <a href="cat.html">cat</a></p>
+<p>example</p>
+<pre><code>
+tip&gt; set x=range(5, 0.1, 0.5)
+tip&gt; cat x (fs:&quot;\n&quot;)
+x : data(num) :
+0.1
+0.2
+0.3
+0.4
+0.5
+tip&gt; elem v = x(3)
+tip&gt; ls v
+v : number [0.3]
+
+tip&gt; elem v = x(20)
+index 20 is out of range
+
+tip&gt; do n 1 5; elem v=x([n]); prn element of x([n]) is [v]; end
+element of x(1) is 0.1
+element of x(2) is 0.2
+element of x(3) is 0.3
+element of x(4) is 0.4
+element of x(5) is 0.5
+ </code></pre>
 </body>
 </html>

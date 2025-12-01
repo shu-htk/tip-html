@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>write</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="write">write</h1>
+<pre><code>
+tip&gt; write
+usage: write v1,v2,... file_name ([opt])
+ where v1,v2,... is list of data to write
+ </code></pre>
+<h2 id="option">option</h2>
+<h3 id="option-with-quoted-argument">option with quoted argument</h3>
+<ul>
+<li><code>fs:</code> field separator</li>
+</ul>
+<h2 id="argument-list-of-variable-names">argument list of variable names</h2>
+<blockquote>
+<p>argument list of variable names is separated by comma with no spaces.</p>
+</blockquote>
+<h2 id="wild-card-matching-to-the-variable-name">wild-card matching to the variable name</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">match to</th>
+<th style="text-align: center;">wild card</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">any string</td>
+<td style="text-align: center;">*</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">any character</td>
+<td style="text-align: center;">?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">one of the list of chars</td>
+<td style="text-align: center;">[abc..], [a-z]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>wild card is <strong>not the regular expression</strong></p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; do n 1 4; set v[n]=random(3,uni); end
+tip&gt; cat v*
+v1 : data(num) :  0.72222002676 0.95971852632 0.6427698157
+v2 : data(num) :  0.89879791527 0.059244560571 0.55197352802
+v3 : data(num) :  0.78516065878 0.31009663609 0.25585515437
+v4 : data(num) :  0.58039504503 0.26256283944 0.16205607036
+
+tip&gt; write v* test.dat
+
+tip&gt; sys cat test.dat
+0.72222002676 0.89879791527 0.78516065878 0.58039504503
+0.95971852632 0.059244560571 0.31009663609 0.26256283944
+0.6427698157 0.55197352802 0.25585515437 0.16205607036
+
+tip&gt; read a test.dat
+
+tip&gt; cat a*
+a1 : data(num) :  0.72222002676 0.95971852632 0.6427698157
+a2 : data(num) :  0.89879791527 0.059244560571 0.55197352802
+a3 : data(num) :  0.78516065878 0.31009663609 0.25585515437
+a4 : data(num) :  0.58039504503 0.26256283944 0.16205607036
+ </code></pre>
+</body>
+</html>

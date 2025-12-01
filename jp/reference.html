@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>reference</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="command-reference">Command Reference</h1>
+<h2 id="usage-to-start-up-the-tip-interpreter-from-the-shell">(1) Usage to start up the tip interpreter from the shell</h2>
+<pre><code>
+$ tip -h
+usage: tip [options]
+
+options:(where arg is option&#39;s argument)
+ -h : show help message (also &#39;--help&#39;)
+ -v : show version (also &#39;--version&#39;)
+ -t arg: set window title (default is &quot;tip&quot;)
+ -g arg: set window geometry size (default is &quot;800x600&quot;)
+ -d arg: set drawing device (default is &quot;xcairo&quot;)
+ -e arg : execute a macro file
+ --pdf arg : graph is drawn in pdf file (window is not open)
+ --png arg : graph is drawn in png file (window is not open)
+ </code></pre>
+<h2 id="syntax-of-the-tip-interpreter">(2) Syntax of the tip interpreter</h2>
+<h3 id="multiple-commands-in-a-line">Multiple commands in a line</h3>
+<p>Separating by “;” you can put multiple command in a line</p>
+<pre><code>
+tip&gt; title &quot;x vs y1 and y2&quot;; plot x y1; plot x y2 (rp:1) 
+ </code></pre>
+<h3 id="comment-out-the-line">Comment out the line</h3>
+<p>Put the “#” at the head of the line</p>
+<pre><code>
+tip&gt; # comment out this line
+ </code></pre>
+<p>Comment out from the middle of the line, put “;” before “#”</p>
+<pre><code>
+tip&gt; plot x y ;# plotting data x and y  
+ </code></pre>
+<h3 id="variable">Variable</h3>
+<ul>
+<li><strong>Data variable</strong></li>
+</ul>
+<p>The data variable is array of number (or string) which is defined by <a href="ref/set.html">set</a> command.</p>
+<pre><code>
+tip&gt; set n={1,2,3}
+tip&gt; set x=sin(n)
+tip&gt; ls x
+x : data(num) : size=3
+tip&gt; cat x
+x : data(num) :  0.84147098481 0.90929742683 0.14112000806
+ </code></pre>
+<p>Explaining by C, the above example is doing like,</p>
+<pre><code>
+double n[]={1,2,3};
+double x[sizeof(n)]; for(int i=0; i&lt;sizeof(n); i++) x[i]=sin(n[i]);
+ </code></pre>
+<ul>
+<li><strong>Macro variable</strong></li>
+</ul>
+<p>The macro variable is scalar of number (or string) which is defined by <a href="ref/var.html">@</a> command.<br />
+Enclosing the macro variable in the brackets [ ] it is replaced to the string which is formatted by it’s value</p>
+<pre><code>
+tip&gt; @ n=1
+tip&gt; @ x=sin([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
+tip&gt; ls *
+n : number [1]
+x : number [0.84147098481]
+ </code></pre>
+<p>Actually, macro variable is replaced to the formatted string before parsing the command.<br />
+so you can do like,</p>
+<pre><code>
+tip&gt; @ n=1
+tip&gt; @ func=sin
+tip&gt; @ ret=x
+tip&gt; @ [ret]=[func]([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
+tip&gt; ls *
+n : number [1]
+x : number [0.84147098481]
+func : string [sin]
+ret : string [x]
+ </code></pre>
+<ul>
+<li><strong>Environment variable</strong></li>
+</ul>
+<p>Environment variables defined in the shell are referenced by ${ }.</p>
+<pre><code>
+tip&gt; prn ${SHELL}
+/bin/bash
+ </code></pre>
+<h2 id="commands-of-macrotool">(3) Commands of MacroTool</h2>
+<ul>
+<li><a href="ref/var.html">@</a> : set macro variable</li>
+<li><a href="ref/args.html">args</a> : set default argument of the macro file</li>
+<li><a href="ref/incr.html">++,–</a> : increment(+1), decrement(-1) numerical macro variable</li>
+<li><a href="ref/loop.html">for,do,while,end</a> : for, do, while loop</li>
+<li><a href="ref/if_fi.html">if,elif,else,fi</a> : conditional branch</li>
+<li><a href="ref/print.html">print</a> : print arguments with macro variables format</li>
+<li><a href="ref/fmt.html">fmt</a> : set output format of macro variable</li>
+<li><a href="ref/wait.html">wait</a> : wait time or console input</li>
+<li><a href="ref/sys.html">sys</a> : execute system command</li>
+<li><a href="ref/split.html">split</a> : split string variable</li>
+<li><a href="ref/calc.html">calc</a> : evaluate the numerical expression</li>
+<li><a href="ref/logic.html">logic</a> : evaluate the logical expression</li>
+<li>q : quit the tip interpreter</li>
+</ul>
+<h2 id="commands-of-drawing-and-handling-data.">(4) Commands of drawing and handling data.</h2>
+<ul>
+<li><a href="ref/arc.html">arc</a> : draw a circle in 2D-graph</li>
+<li><a href="ref/box.html">box</a> : draw the axis of 2D-graph in the box shape</li>
+<li><a href="ref/box3.html">box3</a> : draw the axes of 3D-graph</li>
+<li><a href="ref/cat.html">cat</a> : show data contents / concatenate data</li>
+<li><a href="ref/cut.html">cut</a> : set cut condition</li>
+<li><a href="ref/div.html">div</a> : divide the drawing area</li>
+<li><a href="ref/elem.html">elem</a> : copy data element to macro variable</li>
+<li><a href="ref/exe.html">exe</a> : execute macro file</li>
+<li><a href="ref/fbox.html">fbox</a> : draw a filled pattern box in 2D-graph</li>
+<li><a href="ref/ffit.html">ffit</a> : fit the frequency domain graph</li>
+<li><a href="ref/fit.html">fit</a> : fit the data in 2D-graph</li>
+<li><a href="ref/fit3.html">fit3</a> : fit the data in 3D-graph</li>
+<li><a href="ref/fill.html">fill</a> : draw a filled pattern object in 2D-graph</li>
+<li><a href="ref/font.html">font</a> : set text font</li>
+<li><a href="ref/fplot.html">fplot</a> : plot the frequency domain graph from the data</li>
+<li><a href="ref/help.html">help</a> : show help message</li>
+<li><a href="ref/hfit.html">hfit</a> : fit the histogram</li>
+<li><a href="ref/hplot.html">hplot</a> : plot the histogram from the data</li>
+<li><a href="ref/hplot2.html">hplot2</a>: plot the 2D-histogram from the couple of data</li>
+<li><a href="ref/line.html">line</a> : draw a line in 2D-graph</li>
+<li><a href="ref/ls.html">ls</a> : list macro/data variables</li>
+<li><a href="ref/mplot.html">mplot</a> : plot mesh-graph(3D) or contour-graph(2D)</li>
+<li><a href="ref/mread.html">mread</a> : read the mesh data from the file</li>
+<li><a href="ref/mset.html">mset</a> : set mesh data</li>
+<li><a href="ref/mwrite.html">mwrite</a>: write the mesh data to the file</li>
+<li><a href="ref/opt.html">opt</a> : set/show global options</li>
+<li><a href="ref/plot.html">plot</a> : plot the data in the 2D-graph</li>
+<li><a href="ref/plot3.html">plot3</a> : plot the data in the 3D-graph</li>
+<li><a href="ref/read.html">read</a> : read the data from the file</li>
+<li><a href="ref/rm.html">rm</a> : remove macro/data variables</li>
+<li><a href="ref/set.html">set</a> : set the data</li>
+<li><a href="ref/sort.html">sort</a> : sort the data in ascending order</li>
+<li><a href="ref/stat.html">stat</a> : calc statistics from the data</li>
+<li><a href="ref/symb.html">symb</a> : draw a symbol in 2D-graph</li>
+<li><a href="ref/text.html">text</a> : draw a text in 2D-graph</li>
+<li><a href="ref/title.html">title</a> : set the graph title</li>
+<li><a href="ref/tfmt.html">tfmt</a> : set the x-axis time format</li>
+<li><a href="ref/vp.html">vp</a> : set viewport of drawing area</li>
+<li><a href="ref/write.html">write</a> : write the data to the file</li>
+<li><a href="ref/xerr.html">xerr</a> : plot the x-error-bars in 2D-graph</li>
+<li><a href="ref/xlab.html">xlab</a> : set the x-axis label</li>
+<li><a href="ref/yerr.html">yerr</a> : plot the y-error-bars in 2D-graph</li>
+<li><a href="ref/ylab.html">ylab</a> : set the y-axis label</li>
+<li><a href="ref/zlab.html">zlab</a> : set the z-axis label in 3D-graph</li>
+</ul>
+<h2 id="commands-of-epics-ca-optional">(5) Commands of EPICS CA (optional)</h2>
+<ul>
+<li><a href="ref/cainfo.html">cainfo</a> : show information of record</li>
+<li><a href="ref/caget.html">caget</a> : get value of record</li>
+<li><a href="ref/caput.html">caput</a> : put value of record</li>
+<li><a href="ref/camon.html">camon</a> : open monitored record</li>
+<li><a href="ref/cacheck.html">cacheck</a>: check if monitored record is updated</li>
+<li><a href="ref/caclose.html">caclose</a>: close monitored record</li>
+</ul>
+</body>
+</html>

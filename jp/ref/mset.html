@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tip</title>
+  <title>mset</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,37 +20,21 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="tip---tiny-interactive-plot">tip - tiny interactive plot</h1>
-<p>Tip is a command-line based data plotting tool. It is written in C++ and depends on the library of <a href="https://plplot.sourceforge.net/">PLPLOT</a>, and <a href="https://cgit.git.savannah.gnu.org/cgit/readline.git">GNU readline</a>. Basically it works on Linux or other Unix-like OS. Although it has fewer functions than existing plotting tools, it just aims ease of use over versatility.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>plot the curve in 2D and 3D</li>
-<li>plot the histogram in 2D and 3D</li>
-<li>plot the FFT power spectrum</li>
-<li>data fitting to the curve and the histogram</li>
-<li>data sorting, cutting</li>
-<li>control (<code>for</code>,<code>do</code>,<code>while</code>,<code>end</code>,<code>if</code>,<code>elif</code>,<code>else</code>,<code>fi</code>)</li>
-<li>execute macro file</li>
-<li>save to pdf or png file</li>
-<li><a href="https://epics-controls.org/">EPICS</a> CA access (optional)</li>
-</ul>
-<h2 id="install">Install</h2>
-<ul>
-<li><a href="en/install.html">how to install</a></li>
-</ul>
-<h2 id="tutorial">Tutorial</h2>
-<ul>
-<li><a href="en/tutorial.html">tutorial</a></li>
-</ul>
-<h2 id="macro-examples">Macro Examples</h2>
-<ul>
-<li><a href="en/examples.html">macro examples</a></li>
-</ul>
-<h2 id="command-reference">Command Reference</h2>
-<ul>
-<li><a href="en/reference.html">command reference</a></li>
-</ul>
-<hr />
-<p><em><a href="jp/README.html">Japanese document</a></em></p>
+<h1 id="mset">mset</h1>
+<pre><code>
+tip&gt; mset
+usage: mset v = {{v00,..,v0M},{v10,..,v1M},..,{vN0,..,vNM}}
+       mset v = expression
+ set mesh data v which size is N*M.
+ in the expression, there should be 2 variables
+ of data which size are N and M.
+ </code></pre>
+<h2 id="set-the-mesh-data-using-initializer-list">set the mesh data using initializer list</h2>
+<p>for example see.<br />
+<a href="../ex/ex14.html">ex14: Making mesh arrays and write and read it</a></p>
+<h2 id="set-the-mesh-data-by-expression">set the mesh data by expression</h2>
+<p>for example see,<br />
+<a href="../ex/ex13a.html">ex13a: Plot 3D meshed surface by some functions (part.1)</a><br />
+<a href="../ex/ex13b.html">ex13b: Plot 3D meshed surface by some functions (part.2)</a></p>
 </body>
 </html>
