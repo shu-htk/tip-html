@@ -12,12 +12,12 @@ if [ ! -e en/fig ] ; then
 fi
 echo "generating index.html"
 cat $src/README.md | sed 's%doc/%en/%g' | sed 's%\.md%.html%g' > tip
-pandoc -f markdown -t html tip -s --self-contained -c $css -o index.html \
+pandoc -f markdown -t html tip -s --self-contained -c $css -o README.html \
        >& /dev/null
 
-cat $src/jp/README.md | sed 's%/README%/index%g' | sed 's%\.md%.html%g' > tip
-pandoc -f markdown -t html tip -s --self-contained -c $css -o jp/index.html \
-       >& /dev/null
+#cat $src/jp/README.md | sed 's%/README%/index%g' | sed 's%\.md%.html%g' > tip
+#pandoc -f markdown -t html tip -s --self-contained -c $css -o jp/index.html \
+#       >& /dev/null
 
 rm tip
 
