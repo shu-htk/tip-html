@@ -6,18 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>line</title>
   <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+}
+pre {
+overflow-x: auto;
+padding: 2px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.45;
+}
+</style>
 </head>
 <body>
 <h1 id="line">line</h1>
@@ -25,7 +55,8 @@
 tip&gt; line
 usage: line x0 x1 y0 y1 [(opt)]
  </code></pre>
-<p>draw a line from (x0,y0) to (x1,y1), where x0, x1, y0, y1 are scalar value.</p>
+<p>draw a line from (x0,y0) to (x1,y1), where x0, x1, y0, y1 are scalar
+value.</p>
 <h2 id="option">option</h2>
 <ul>
 <li><code>lc:</code> set line color</li>
@@ -33,6 +64,6 @@ usage: line x0 x1 y0 y1 [(opt)]
 <li><code>lw:</code> set line width, 0=not draw, 1=draw</li>
 <li><code>ae:</code> draw arrow edge(0=non,1=end,2=begin,3=both)</li>
 </ul>
-<p>for example, see <a href="../ex/ex03.html">ex03</a>, <a href="../ex/ex06.html">ex06</a>, <a href="../ex/ex09.html">ex09</a>, <a href="../ex/ex17b.html">ex17b</a>, <a href="../ex/ex21.html">ex21</a></p>
+<p>for example, see <a href="../../en/ex/ex03.html">ex03</a>, <a href="../../en/ex/ex06.html">ex06</a>, <a href="../../en/ex/ex09.html">ex09</a>, <a href="../../en/ex/ex17b.html">ex17b</a>, <a href="../../en/ex/ex21.html">ex21</a></p>
 </body>
 </html>

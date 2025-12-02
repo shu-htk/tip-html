@@ -6,18 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>fplot</title>
   <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+}
+pre {
+overflow-x: auto;
+padding: 2px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.45;
+}
+</style>
 </head>
 <body>
 <h1 id="fplot">fplot</h1>
@@ -43,7 +73,8 @@ options:
 <ul>
 <li><code>dt:</code> time tick of FFT (default is 1.0)</li>
 <li><code>fw:</code> FFT window function</li>
-<li><code>gt:</code> graph type (slope, bin1, bin2) default is slope. see <a href="hplot.html">hplot</a></li>
+<li><code>gt:</code> graph type (slope, bin1, bin2) default is slope.
+see <a href="hplot.html">hplot</a></li>
 <li><code>lc:</code> line color</li>
 <li><code>lt:</code> line style</li>
 <li><code>lw:</code> line width, (0=not draw, default is 1)</li>
@@ -59,23 +90,30 @@ options:
 <li><code>ys:</code> x-axis scale, (lin, log)</li>
 <li><code>xm:</code> x margin factor, (default is 0.02)</li>
 <li><code>ym:</code> y margin factor, (default is 0.1)</li>
-<li><code>gd:</code> set flag to draw grid line, (0=not draw, 1=draw)</li>
-<li><code>bo:</code> set box drawing order, (0=horizontal, 1=vertical)</li>
-<li><code>bp:</code> set box position, (from 1 to max number of divided frame)</li>
+<li><code>gd:</code> set flag to draw grid line, (0=not draw,
+1=draw)</li>
+<li><code>bo:</code> set box drawing order, (0=horizontal,
+1=vertical)</li>
+<li><code>bp:</code> set box position, (from 1 to max number of divided
+frame)</li>
 </ul>
 <blockquote>
-<p>in <code>xm:</code> x margin means distance between maximum/minimum point of data to left/right edge of x-axis</p>
+<p>in <code>xm:</code> x margin means distance between maximum/minimum
+point of data to left/right edge of x-axis</p>
 </blockquote>
 <blockquote>
-<p>in <code>ym:</code> y margin means distance between maximum/minimum point of data to down/up edge of y-axis</p>
+<p>in <code>ym:</code> y margin means distance between maximum/minimum
+point of data to down/up edge of y-axis</p>
 </blockquote>
 <h3 id="option-with-two-arguments">option with two arguments</h3>
 <blockquote>
 <p>arguments is separated by comma with no spaces.</p>
 </blockquote>
 <ul>
-<li><code>xr:</code> x-axis range (default 0,0 : range is automatically calculated)</li>
-<li><code>yr:</code> x-axis range (default 0,0 : range is automatically calculated)</li>
+<li><code>xr:</code> x-axis range (default 0,0 : range is automatically
+calculated)</li>
+<li><code>yr:</code> x-axis range (default 0,0 : range is automatically
+calculated)</li>
 </ul>
 <h3 id="option-with-quoted-argument">option with quoted argument</h3>
 <ul>
@@ -109,6 +147,6 @@ v_fy : data(num) : size=512  ;# created data of power spectrum
 
 tip&gt; plot v_fx v_fy            ;# the same as fplot t v
  </code></pre>
-<p>for example, see <a href="../ex/ex08.html">ex08</a>, <a href="../ex/ex18.html">ex18</a></p>
+<p>for example, see <a href="../../en/ex/ex08.html">ex08</a>, <a href="../../en/ex/ex18.html">ex18</a></p>
 </body>
 </html>
