@@ -6,48 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>exe</title>
   <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
-</style>
-  <style type="text/css">body {
-background-color: #fdf6e3;
-margin: 40px;
-padding: 20px;
-border: 2px solid gray;
-border-radius: 10px;
-}
-table, th, td {
-background-color: #eee8d5;
-border: 1px solid gray;
-border-collapse: collapse;
-padding: 6px;
-}
-code {
-background-color: #f6f8fa;
-padding: 6px;
-border-radius: 3px;
-}
-pre {
-overflow-x: auto;
-padding: 2px 16px;
-background-color: #f6f8fa;
-border: 2px solid gray;
-border-radius: 6px;
-line-height: 1.45;
-}
-</style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h1 id="exe">exe</h1>
@@ -65,8 +35,7 @@ usage: exe [macro_file] [arg1,arg2,...] [(opt)]
 <ul>
 <li><code>dm:</code> set flag of debug-mode</li>
 </ul>
-<h2 id="execute-macro-file-with-arguments">Execute macro file with
-arguments</h2>
+<h2 id="execute-macro-file-with-arguments">Execute macro file with arguments</h2>
 <blockquote>
 <p>arguments are separated by commas with no spaces.</p>
 </blockquote>
@@ -140,8 +109,7 @@ else
    prn no args
 fi
  </code></pre>
-<p>executting <code>args.tip</code> with different number of
-arguments</p>
+<p>executting <code>args.tip</code> with different number of arguments</p>
 <pre><code>
 tip&gt; exe args.tip
 no args
@@ -159,8 +127,7 @@ arg 4 is a
 arg 5 is b
 arg 6 is c
  </code></pre>
-<h2 id="execute-macro-file-with-debug-mode">Execute macro file with
-debug-mode</h2>
+<h2 id="execute-macro-file-with-debug-mode">Execute macro file with debug-mode</h2>
 <p>example macro file : <code>test.tip</code></p>
 <pre><code>
 @ s=abc
