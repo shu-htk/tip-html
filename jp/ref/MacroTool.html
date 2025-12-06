@@ -71,8 +71,18 @@ macro commands:
  logic : evaluate the logical expression
  q     : terminate this program
  </code></pre>
-<p>There is a simple example how to use MacroTool :
-<code>src/c++03/my_macro.cc</code>.</p>
+<h2 id="not-adding-user-command">not adding user command</h2>
+<pre><code>
+#include &quot;thl/MacroTool.hh&quot;
+
+int main() {
+  thl::MacroTool macro;
+  macro.main_loop();
+  return 0;
+}
+ </code></pre>
+<h2 id="adding-user-commands">adding user commands</h2>
+<p>src/c++03/my_macro.cc</p>
 <pre><code>
 // my_macro : simple example how to use thl::MacroTool
 //
@@ -81,15 +91,13 @@ macro commands:
 #include &quot;thl/MacroTool.hh&quot;
 
 class MyMacro : public thl::MacroTool {
-private:
-  int _debug;
 public:
-  MyMacro() : _debug(0) {}
-  int add_commands(std::string buf) {// called from thl::MacroTool::parse_vbuf()
+  MyMacro() {}
+  int add_commands(std::string buf) {
     thl::StrSplit args;
     args.set_quot_to_skip_split(&#39;&quot;&#39;);
     args.split(buf);
-       if(args(0)==&quot;help&quot;) {
+    if(args(0)==&quot;help&quot;) {
       printf(&quot;additional commands:\n&quot;
          &quot; exe  : execute a macro file.\n&quot;
          &quot; ls   : print macro variables.\n&quot;
@@ -105,7 +113,8 @@ public:
     return 0;
       }
       std::string arg_list=(args.size()&gt;2) ? args(2) : &quot;&quot;;
-      exec(args(1),arg_list);
+      MyMacro mac;
+      mac.exec(args(1),arg_list);
       return 0;
     }
     if(args(0)==&quot;ls&quot;) {
