@@ -106,6 +106,8 @@ default field separator is a space character.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="skip-the-line">skip the line</h2>
+<p>Lines beginning with # are skipped</p>
 <h2 id="naming-rule-of-valiable-list">naming rule of valiable list</h2>
 <p>If it is specified a list of N variables, and file has M columns,</p>
 <pre><code>
@@ -118,8 +120,8 @@ default field separator is a space character.</p>
 <h2 id="read-the-output-of-the-system-command">read the output of the
 system command</h2>
 <blockquote>
-<p>If the filename is a command enclosed in backquotes, its output is
-read through the pipe.</p>
+<p>If the filename is a system command enclosed in backquotes, its
+output is read.</p>
 </blockquote>
 <p>example,</p>
 <pre><code>
