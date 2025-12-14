@@ -52,16 +52,15 @@ line-height: 1.45;
 <body>
 <h1 id="cacheck">cacheck</h1>
 <pre><code>
+tip&gt; cacheck
 usage: cacheck v1,v2,...
  check if EPICS records connected to data v1,v2,... are updated.
  (v1,v2,... should be defeined by &#39;camon&#39;)
  also the following macro variables are created.
 macro variables:
   v1        : the 1st element of data v1
-  v1.update : 1 if v1 updated, 0 if not updated
-  v2        : the 1st element of data v2
-  v2.update : 1 if v2 updated, 0 if not updated
-  ... 
+  v1.update : unix time if v1 updated, 0 if not updated
+  ...
  </code></pre>
 <p>Check if the EPICS_record is updated.</p>
 <p>If it is updated the following variables are set.</p>
@@ -70,7 +69,8 @@ macro variables:
 <code>set v = (all elements of EPICS_record)</code></li>
 <li><strong>macro variable :</strong>
 <code>@ v = (1st element of EPICS_record)</code></li>
-<li><strong>macro variable :</strong> <code>@ v.update = 1</code></li>
+<li><strong>macro variable :</strong>
+<code>@ v.update = updated unix time (sec)</code></li>
 </ul>
 <p>If it is not updated the following variable is set.</p>
 <ul>
