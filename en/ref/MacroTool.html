@@ -6,53 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MacroTool</title>
   <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
-</style>
-  <style type="text/css">body {
-background-color: #fdf6e3;
-margin: 40px;
-padding: 20px;
-border: 2px solid gray;
-border-radius: 10px;
-}
-table, th, td {
-background-color: #eee8d5;
-border: 1px solid gray;
-border-collapse: collapse;
-padding: 6px;
-}
-code {
-background-color: #f6f8fa;
-padding: 6px;
-border-radius: 3px;
-}
-pre {
-overflow-x: auto;
-padding: 2px 16px;
-background-color: #f6f8fa;
-border: 2px solid gray;
-border-radius: 6px;
-line-height: 1.45;
-}
-</style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E45%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h1 id="macrotool">MacroTool</h1>
-<p>MacroTool is the header-only class library which provide the
-following command:</p>
+<p>MacroTool is the header-only class library which provide the following command:</p>
 <pre><code>
 macro commands:
  @     : define numerical or string variable
@@ -99,18 +68,18 @@ public:
     args.split(buf);
     if(args(0)==&quot;help&quot;) {
       printf(&quot;additional commands:\n&quot;
-         &quot; exe  : execute a macro file.\n&quot;
-         &quot; ls   : print macro variables.\n&quot;
-         &quot; rm   : remove macro variables.\n&quot;
-         );
+             &quot; exe  : execute a macro file.\n&quot;
+             &quot; ls   : print macro variables.\n&quot;
+             &quot; rm   : remove macro variables.\n&quot;
+             );
       print_help();
       return 0;
     }
     if(args(0)==&quot;exe&quot;) {
       if(args.size() &lt; 2) {
-    printf(&quot;usage: exe [macro_file] [arg1,arg2,..]\n&quot;
-           &quot; execute macro_file.\n&quot;);
-    return 0;
+        printf(&quot;usage: exe [macro_file] [arg1,arg2,..]\n&quot;
+               &quot; execute macro_file.\n&quot;);
+        return 0;
       }
       std::string arg_list=(args.size()&gt;2) ? args(2) : &quot;&quot;;
       MyMacro mac;
@@ -119,20 +88,20 @@ public:
     }
     if(args(0)==&quot;ls&quot;) {
       if(args.size() &lt; 2) {
-    printf(&quot;usage: ls [pattern]\n&quot;
-           &quot; print macro variables which matches pattern.\n&quot;
-           &quot; example: &#39;ls *&#39; show all defined macro variables.\n&quot;);
-    return 0;
+        printf(&quot;usage: ls [pattern]\n&quot;
+               &quot; print macro variables which matches pattern.\n&quot;
+               &quot; example: &#39;ls *&#39; show all defined macro variables.\n&quot;);
+        return 0;
       }
       var.ls(args(1));
       return 0;
     }
     if(args(0)==&quot;rm&quot;) {
       if(args.size() &lt; 2) {
-    printf(&quot;usage: rm [pattern]\n&quot;
-           &quot; remove macro variables which matches pattern.\n&quot;
-           &quot; example: &#39;rm *&#39;  remvoe all macro variables.\n&quot;);
-    return 0;
+        printf(&quot;usage: rm [pattern]\n&quot;
+               &quot; remove macro variables which matches pattern.\n&quot;
+               &quot; example: &#39;rm *&#39;  remvoe all macro variables.\n&quot;);
+        return 0;
       }
       var.rm(args(1));
       return 0;
