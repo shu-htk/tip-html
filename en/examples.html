@@ -6,103 +6,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>examples</title>
   <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
-</style>
-  <style type="text/css">body {
-background-color: #fdf6e3;
-margin: 40px;
-padding: 20px;
-border: 2px solid gray;
-border-radius: 10px;
-}
-table, th, td {
-background-color: #eee8d5;
-border: 1px solid gray;
-border-collapse: collapse;
-padding: 6px;
-}
-code {
-background-color: #f6f8fa;
-padding: 6px;
-border-radius: 3px;
-}
-pre {
-overflow-x: auto;
-padding: 2px 16px;
-background-color: #f6f8fa;
-border: 2px solid gray;
-border-radius: 6px;
-line-height: 1.45;
-}
-</style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,a%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Abody%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E95%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h1 id="macro-examples">Macro Examples</h1>
 <ul>
-<li><a href="ex/ex01.html">ex01: Plot data with error-bars and
-fitting</a></li>
+<li><a href="ex/ex01.html">ex01: Plot data with error-bars and fitting</a></li>
 <li><a href="ex/ex02.html">ex02: Plot mathematical functions</a></li>
 <li><a href="ex/ex03.html">ex03: Text Alignment</a></li>
 <li><a href="ex/ex04.html">ex04: Marge 2 Histograms</a></li>
-<li><a href="ex/ex05.html">ex05: Greek letters and some Font
-effects</a></li>
-<li><a href="ex/ex06.html">ex06: Text drawing with some
-rotations</a></li>
-<li><a href="ex/ex07a.html">ex07a: Fitting
-Linear/Quadratic/Gaussian</a></li>
-<li><a href="ex/ex07b.html">ex07b: Fitting
-Exponential/Logarithm/Sinusoidal/Circular</a></li>
+<li><a href="ex/ex05.html">ex05: Greek letters and some Font effects</a></li>
+<li><a href="ex/ex06.html">ex06: Text drawing with some rotations</a></li>
+<li><a href="ex/ex07a.html">ex07a: Fitting Linear/Quadratic/Gaussian</a></li>
+<li><a href="ex/ex07b.html">ex07b: Fitting Exponential/Logarithm/Sinusoidal/Circular</a></li>
 <li><a href="ex/ex08.html">ex08: FFT power spectrum and fitting</a></li>
-<li><a href="ex/ex09.html">ex09: Data cutting and simplified logical
-expression</a></li>
-<li><a href="ex/ex10.html">ex10: Plot 3D curve and fitting by the
-plane</a></li>
-<li><a href="ex/ex11.html">ex11: Plot 1D,2D Histograms and cutting the
-data</a></li>
-<li><a href="ex/ex12.html">ex12: Plot 3D contour and meshed surface with
-colored scaling</a></li>
-<li><a href="ex/ex13a.html">ex13a: Plot 3D meshed surface by some
-functions (part.1)</a></li>
-<li><a href="ex/ex13b.html">ex13b: Plot 3D meshed surface by some
-functions (part.2)</a></li>
-<li><a href="ex/ex14.html">ex14: Making mesh arrays and write and read
-it</a></li>
-<li><a href="ex/ex15.html">ex15: Draw all patterns of fill box and
-symbols</a></li>
-<li><a href="ex/ex16.html">ex16: plot divided box by vertical
-order</a></li>
-<li><a href="ex/ex17a.html">ex17a: Plot ISO-time-format data with
-time-axis format</a></li>
-<li><a href="ex/ex17b.html">ex17b: Plot ISO-time-format data converting
-year,month,day</a></li>
-<li><a href="ex/ex18.html">ex18: Plot ISO-time-format data of very
-narrow interval</a></li>
+<li><a href="ex/ex09.html">ex09: Data cutting and simplified logical expression</a></li>
+<li><a href="ex/ex10.html">ex10: Plot 3D curve and fitting by the plane</a></li>
+<li><a href="ex/ex11.html">ex11: Plot 1D,2D Histograms and cutting the data</a></li>
+<li><a href="ex/ex12.html">ex12: Plot 3D contour and meshed surface with colored scaling</a></li>
+<li><a href="ex/ex13a.html">ex13a: Plot 3D meshed surface by some functions (part.1)</a></li>
+<li><a href="ex/ex13b.html">ex13b: Plot 3D meshed surface by some functions (part.2)</a></li>
+<li><a href="ex/ex14.html">ex14: Making mesh arrays and write and read it</a></li>
+<li><a href="ex/ex15.html">ex15: Draw all patterns of fill box and symbols</a></li>
+<li><a href="ex/ex16.html">ex16: plot divided box by vertical order</a></li>
+<li><a href="ex/ex17a.html">ex17a: Plot ISO-time-format data with time-axis format</a></li>
+<li><a href="ex/ex17b.html">ex17b: Plot ISO-time-format data converting year,month,day</a></li>
+<li><a href="ex/ex18.html">ex18: Plot ISO-time-format data of very narrow interval</a></li>
 <li><a href="ex/ex19.html">ex19: Plot moving averaged data</a></li>
-<li><a href="ex/ex20.html">ex20: plot time variation of increasing
-data</a></li>
-<li><a href="ex/ex21.html">ex21: Absolute coordinate and Relative
-coordinate</a></li>
+<li><a href="ex/ex20.html">ex20: plot time variation of increasing data</a></li>
+<li><a href="ex/ex21.html">ex21: Absolute coordinate and Relative coordinate</a></li>
 <li><a href="ex/ex22.html">ex22: Gain curve of Low Pass Filter</a></li>
-<li><a href="ex/ex23.html">ex23: Huge data reading and scatter
-plot</a></li>
+<li><a href="ex/ex23.html">ex23: Huge data reading and scatter plot</a></li>
 </ul>
 <h2 id="epics-ca-optional">EPICS CA (optional)</h2>
 <ul>
-<li><a href="ex/ex101.html">ex101: plot the trend graph of the data
-using EPICS CA</a></li>
+<li><a href="ex/ex101.html">ex101: plot the trend graph of the data using EPICS CA</a></li>
 </ul>
 </body>
 </html>

@@ -6,48 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>install</title>
   <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
-</style>
-  <style type="text/css">body {
-background-color: #fdf6e3;
-margin: 40px;
-padding: 20px;
-border: 2px solid gray;
-border-radius: 10px;
-}
-table, th, td {
-background-color: #eee8d5;
-border: 1px solid gray;
-border-collapse: collapse;
-padding: 6px;
-}
-code {
-background-color: #f6f8fa;
-padding: 6px;
-border-radius: 3px;
-}
-pre {
-overflow-x: auto;
-padding: 2px 16px;
-background-color: #f6f8fa;
-border: 2px solid gray;
-border-radius: 6px;
-line-height: 1.45;
-}
-</style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,a%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Abody%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Apadding%3A%202px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E95%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h1 id="install">Install</h1>
@@ -57,10 +27,8 @@ line-height: 1.45;
 <li>AlmaLinux 9.5 (both of native and WSL2 on Windows11)</li>
 <li>macOS 12.7.6 (MacBook Air 2015 MJVM2J/A)</li>
 </ul>
-<p>In principle you can install the tip on the system which PLPLOT and
-GNU readline are installed.</p>
-<h2 id="install-plplot-gnu-readline">(1) Install PLPLOT,
-GNU-readline</h2>
+<p>In principle you can install the tip on the system which PLPLOT and GNU readline are installed.</p>
+<h2 id="install-plplot-gnu-readline">(1) Install PLPLOT, GNU-readline</h2>
 <ul>
 <li><strong>Ubuntu 24.04</strong></li>
 </ul>
@@ -104,13 +72,10 @@ sudo dnf install readline-devel
 sudo port install plplot
 sudo port install readline
  </code></pre>
-<h2 id="configure-and-make-the-tip-executable">(2) Configure and make
-the tip executable</h2>
+<h2 id="configure-and-make-the-tip-executable">(2) Configure and make the tip executable</h2>
 <p>Access to https://github.com/shu-htk/tip-dev</p>
-<p>From the <strong>“Code”</strong> pull-down menu, choose
-<strong>“Download zip”</strong></p>
-<p>or directly download from
-https://github.com/shu-htk/tip-dev/archive/refs/heads/main.zip</p>
+<p>From the <strong>“Code”</strong> pull-down menu, choose <strong>“Download zip”</strong></p>
+<p>or directly download from https://github.com/shu-htk/tip-dev/archive/refs/heads/main.zip</p>
 <p>Copy downloaded zip file to your working directory.</p>
 <p>On the Linux terminal, extract zip file,</p>
 <pre><code>
@@ -122,10 +87,8 @@ cd tip-dev-main
 ./configure
 make
  </code></pre>
-<p>The executable is compiled and outputted to
-<code>./bin/tip</code></p>
-<p>If your shell has command path to <span class="math inline">$HOME/bin, copy the executable file to
-`$</span>HOME/bin` by</p>
+<p>The executable is compiled and outputted to <code>./bin/tip</code></p>
+<p>If your shell has command path to <span class="math inline">$HOME/bin, copy the executable file to `$</span>HOME/bin` by</p>
 <pre><code>
 make install
  </code></pre>
@@ -136,20 +99,14 @@ export PATH=$PATH:$HOME/bin
 ```
 -->
 <h2 id="about-my_macro">(3) About my_macro</h2>
-<p>The executable file <code>my_macro</code> is also installed when you
-install the <code>tip</code>.<br />
+<p>The executable file <code>my_macro</code> is also installed when you install the <code>tip</code>.<br />
 It is a simple example using <a href="ref/MacroTool.html">MacroTool</a>.</p>
 <h2 id="enable-epics-ca-optional">(4) Enable EPICS CA (optional)</h2>
-<p>If it is already installed the EPICS in your computer, just check if
-the environment variable <code>EPICS_BASE</code> is set in your shell.
-If it is set, the <a href="#2-configure-and-make-the-tip-executable">configure script of the
-Tip</a> generate Makefile to enable the EPICS CA.</p>
-<p>If it is not installed the EPICS, you need to make and setup the
-EPICS environment as following.</p>
+<p>If it is already installed the EPICS in your computer, just check if the environment variable <code>EPICS_BASE</code> is set in your shell. If it is set, the <a href="#2-configure-and-make-the-tip-executable">configure script of the Tip</a> generate Makefile to enable the EPICS CA.</p>
+<p>If it is not installed the EPICS, you need to make and setup the EPICS environment as following.</p>
 <p>Download the archive of the EPICS source.</p>
 <ul>
-<li>stable::
-https://epics-controls.org/download/base/base-3.15.9.tar.gz</li>
+<li>stable:: https://epics-controls.org/download/base/base-3.15.9.tar.gz</li>
 <li>new: https://epics-controls.org/download/base/base-7.0.9.tar.gz</li>
 </ul>
 <p>For example, installing new version to $HOME/epics</p>
