@@ -1,3 +1,6 @@
+a {
+  text-decoration: none;
+}
 body {
   background-color: #fdf6e3;
   margin: 40px;
@@ -22,5 +25,5 @@ pre {
   background-color: #f6f8fa;
   border: 2px solid gray;
   border-radius: 6px;
-  line-height: 1.45;
+  line-height: 1.95;
 }

@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 opt=${1:-null}
 src=$(echo $PWD | sed 's%html%dev%g')
@@ -11,7 +11,7 @@ ln -s en/fig .
 if [ ! -e en/fig ] ; then
     cp -rp $src/doc/fig en
 fi
-if [ $src/README.md -nt README.html ] || [ $opt == force ] ;then
+if [ $opt == force ] || [ $src/README.md -nt README.html ] ;then
     echo "update index.html"
     cat $src/README.md | sed 's%doc/%en/%g' | sed 's%\.md%.html%g' > tip
     pandoc -f markdown -t html tip -s --self-contained -c $css -o README.html \
@@ -22,7 +22,7 @@ fi
 cd en
 for f in $src/doc/*.md $src/doc/ex/*.md $src/doc/ref/*.md ; do
     dest=$(echo ${f%.*}.html | sed "s%$src/doc/%%g")
-    if [ $f -nt $dest ] || [ $opt == force ] ; then
+    if [ $opt == force ] || [ $f -nt $dest ] ; then
 	f2=$(basename ${f%.*})
 	cat $f | sed 's%\.md%.html%g' | sed 's%\[@\]%[ @ ]%g' > $f2
 	echo "update en/$dest"
@@ -38,7 +38,7 @@ cd ..
 cd jp
 for f in $src/jp/*.md $src/jp/ref/*.md ; do
     dest=$(echo ${f%.*}.html | sed "s%$src/jp/%%g")
-    if [ $f -nt $dest ] || [ $opt == force ] ; then
+    if [ $opt == force ] || [ $f -nt $dest ] ; then
 	f2=$(basename ${f%.*})
 	cat $f | sed 's%\.md%.html%g' | sed 's%../doc/%../en/%g' \
 	    | sed 's%\[@\]%[ @ ]%g' > $f2
