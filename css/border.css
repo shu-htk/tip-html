@@ -1,29 +1,35 @@
-a {
-  text-decoration: none;
-}
+a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
 body {
   background-color: #fdf6e3;
   margin: 40px;
   padding: 20px;
   border: 2px solid gray;
   border-radius: 10px;
+  font-size: 16px;
 }
 table, th, td {
   background-color: #eee8d5;
   border: 1px solid gray;
   border-collapse: collapse;
   padding: 6px;
+  font-size: 16px;
 }
 code {
   background-color: #f6f8fa;
   padding: 6px;
   border-radius: 3px;
+  font-size: 14px;
 }
 pre {
-  overflow-x: auto;
-  padding: 2px 16px;
+  overflow: hidden;
+  padding: 0px 16px;
   background-color: #f6f8fa;
   border: 2px solid gray;
   border-radius: 6px;
-  line-height: 1.95;
+  line-height: 1.9;
+  font-size: 14px;
 }
