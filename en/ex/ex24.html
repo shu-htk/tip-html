@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ex24</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h1 id="ex24-single-muon-cherenkov-light-detected-in-super-kamiokande">ex24:
+Single muon Cherenkov light detected in Super-Kamiokande</h1>
+<pre><code>
+#
+# data from:
+# https://www-sk.icrr.u-tokyo.ac.jp/sk/assets/about/detector/evdisplay-data/sample.zip
+#
+args al=50,az=-60  ;# set viewing angle: al=altitude(deg), az=azimuth(deg)
+
+read cable,charge,time,x,y,z 1ring-mu.0000.000021.csv (fs:&quot;,&quot; nr:20,-1)
+
+div 1 1
+set xm = x/100; xlab &quot;x (m)&quot;
+set ym = y/100; ylab &quot;y (m)&quot;
+set zm = z/100; zlab &quot;z (m)&quot;
+opt (lw:0 st:dot xt:5 yt:5 ts:0.8)
+plot3 xm ym zm (ss:1 sc:blue al:[al] az:[az])
+plot3 xm ym zm (ss:2 sc:pink cc:&quot;1&lt;=charge&lt;2 &amp; 1000&lt;time&lt;1100&quot; rp:1)
+plot3 xm ym zm (ss:3 sc:red  cc:&quot;2&lt;=charge &amp; 1000&lt;time&lt;1100&quot; rp:1)
+
+div 1 12
+box 0 10 0 10 (lw:0 bp:4)
+text 1 5 &quot;Single muon Cherenkov light detected in Super-Kamiokande&quot; (ts:3)
+
+div 2 4
+title &quot;Charge distribution&quot;; xlab &quot;(p.e.)&quot;; ylab &quot; &quot;
+opt (lw:1 xr:0,11 ft:solid xt:1 yt:10 ts:1.1)
+hplot charge (fc:blue)
+hplot charge (fc:pink cc:&quot;1&lt;=charge&lt;2&quot; rp:1)
+hplot charge (fc:red  cc:&quot;2&lt;=charge&quot; rp:1)
+
+title &quot;Timing distribution&quot;; xlab &quot;(ns)&quot;
+opt (xr:500,1700 ft:solid xt:200 ts:1.1)
+hplot time
+hplot time (fc:gray cc:&quot;1000&lt;time&lt;1100&quot; rp:1)
+ </code></pre>
+<p><img src="../fig/ex24.png" /></p>
+</body>
+</html>
