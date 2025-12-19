@@ -20,6 +20,13 @@ if [ $opt == force ] || [ $src/README.md -nt README.html ] ;then
 fi
 
 cd en
+for f in $src/doc/fig/*.png ; do
+    dest=$(echo ${f%.*}.png | sed "s%$src/doc/%%g")
+    if [ $opt == force ] || [ $f -nt $dest ] ; then
+	echo "update en/$dest"
+	cp $f $dest
+    fi
+done
 for f in $src/doc/*.md $src/doc/ex/*.md $src/doc/ref/*.md ; do
     dest=$(echo ${f%.*}.html | sed "s%$src/doc/%%g")
     if [ $opt == force ] || [ $f -nt $dest ] ; then
