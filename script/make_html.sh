@@ -7,10 +7,10 @@ tmp=$PWD/tmp/tmp
 
 echo "generating directries ..."
 mkdir -p tmp en/ex en/ref jp/ref
-ln -s en/fig .
 if [ ! -e en/fig ] ; then
     cp -rp $src/doc/fig en
 fi
+ln -s en/fig .
 if [ $opt == force ] || [ $src/README.md -nt README.html ] ;then
     echo "update index.html"
     cat $src/README.md | sed 's%doc/%en/%g' | sed 's%\.md%.html%g' > tip
