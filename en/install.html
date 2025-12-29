@@ -98,14 +98,14 @@ sudo dnf install readline-devel
 <ul>
 <li><strong>Windows 11</strong></li>
 </ul>
-<p>The easiest way is to run the Linux on WSL2.</p>
-<p>official : https://learn.microsoft.com/windows/wsl/install</p>
+<p>WSL : <a href="https://learn.microsoft.com/windows/wsl/install">https://learn.microsoft.com/windows/wsl/install</a></p>
+<p>Cygwin: <a href="https://sourceforge.net/p/plplot/wiki/Setup_cygwin/">https://sourceforge.net/p/plplot/wiki/Setup_cygwin/</a></p>
 <ul>
 <li><strong>macOS 12.7.6</strong></li>
 </ul>
 <ol type="1">
-<li>install MacPorts https://www.macports.org</li>
-<li>install XQuartz https://www.xquartz.org</li>
+<li>install MacPorts: <a href="https://www.macports.org">https://www.macports.org</a></li>
+<li>install XQuartz: <a href="https://www.xquartz.org">https://www.xquartz.org</a></li>
 <li>install PLPLOT, readline from the terminal<br />
 </li>
 </ol>
@@ -115,11 +115,10 @@ sudo port install readline
  </code></pre>
 <h2 id="configure-and-make-the-tip-executable">(2) Configure and make
 the tip executable</h2>
-<p>Access to https://github.com/shu-htk/tip-dev</p>
+<p>Access to <a href="https://github.com/shu-htk/tip-dev">https://github.com/shu-htk/tip-dev</a></p>
 <p>From the <strong>“Code”</strong> pull-down menu, choose
 <strong>“Download zip”</strong></p>
-<p>or directly download from
-https://github.com/shu-htk/tip-dev/archive/refs/heads/main.zip</p>
+<p>or directly download from <a href="https://github.com/shu-htk/tip-dev/archive/refs/heads/main.zip">https://github.com/shu-htk/tip-dev/archive/refs/heads/main.zip</a></p>
 <p>Copy downloaded zip file to your working directory.</p>
 <p>On the Linux terminal, extract zip file,</p>
 <pre><code>
@@ -151,15 +150,14 @@ It is a simple example using <a href="ref/MacroTool.html">MacroTool</a>.</p>
 <h2 id="enable-epics-ca-optional">(4) Enable EPICS CA (optional)</h2>
 <p>If it is already installed the EPICS in your computer, just check if
 the environment variable <code>EPICS_BASE</code> is set in your shell.
-If it is set, the <a href="#2-configure-and-make-the-tip-executable">configure script of the
-Tip</a> generate Makefile to enable the EPICS CA.</p>
+If it is set, the configure script of the Tip generate Makefile to
+enable the EPICS CA.</p>
 <p>If it is not installed the EPICS, you need to make and setup the
 EPICS environment as following.</p>
 <p>Download the archive of the EPICS source.</p>
 <ul>
-<li>stable::
-https://epics-controls.org/download/base/base-3.15.9.tar.gz</li>
-<li>new: https://epics-controls.org/download/base/base-7.0.9.tar.gz</li>
+<li>stable:: <a href="https://epics-controls.org/download/base/base-3.15.9.tar.gz">https://epics-controls.org/download/base/base-3.15.9.tar.gz</a></li>
+<li>new: <a href="https://epics-controls.org/download/base/base-7.0.9.tar.gz">https://epics-controls.org/download/base/base-7.0.9.tar.gz</a></li>
 </ul>
 <p>For example, installing new version to $HOME/epics</p>
 <pre><code>
