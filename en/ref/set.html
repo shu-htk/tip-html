@@ -64,6 +64,7 @@ font-size: 14px;
 tip&gt; set
 usage: set v = {x0,x1,x2,...}
        set v = range(N,x0,x1)
+       set v = incr(N,x0,dx)
        set v = random(N,uni|gaus|exp[,params...]) [(opt)]
        set v = time(t[,unit]) 
        set v = expression
@@ -80,6 +81,7 @@ tip&gt; set x = {1, 2, 3} # OK: you can put spaces between value and comma
 tip&gt; set x={1,2,3}     # OK
  </code></pre>
 <h2 id="set-data-using-range">set data using range()</h2>
+<p>set data by initial value(x0) and final value(x1)</p>
 <blockquote>
 <p><a href="range.html">range</a>() is a function exclusive to the
 <code>set</code> command and cannot be used in the expressions.</p>
@@ -90,6 +92,18 @@ tip&gt; set x = range(10, 1, 10)  ;# OK: you can put spaces between value and co
 tip&gt; set x = range (10, 1, 10) ;# NG: you can not put spaces between range and (
 tip&gt; set x=range(10,1,10)      ;# OK
 tip&gt; set x = y + range(10,1,10) ;# NG: you can not use it in the expression
+ </code></pre>
+<h2 id="set-data-using-incr">set data using incr()</h2>
+<p>set data by initial value(x0) and incremental value(dx)</p>
+<pre><code>
+tip&gt; incr
+usage: set v = incr(N,x0,dx)
+  set N-size data starting from x0 increment by dx.
+  ex.) incr(5,0,2) set the data {0, 2, 4, 6, 8}.
+  
+tip&gt; set x=incr(5,0,2)
+tip&gt; cat x
+x : data(num) :  0 2 4 6 8
  </code></pre>
 <h2 id="set-data-using-random">set data using random()</h2>
 <blockquote>
