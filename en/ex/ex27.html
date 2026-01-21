@@ -109,7 +109,18 @@ int main(int argc, const char *argv[]) {
  </code></pre>
 <h2 id="macro-file">Macro file</h2>
 <pre><code>
+# ex27: Draw a fractal of the Mandelbrot set
+#
+# using external program:  src/c++03/mandelbrot.cc
+#
+args ndiv=500,ntry=100,xr=-2:0.5,yr=-1.3:1.3
 
+sys ./bin/mandelbrot -ndiv [ndiv] -ntry [ntry] -xr [xr] -yr [yr]
+
+title &quot;Fractal of the Mandelbrot set (ndiv=[ndiv],ntry=[ntry])&quot;
+mread x,y,z mandelbrot.dat
+vp 0 0 0 0 1
+mplot x y z (xm:0 ym:0 mt:cont2)
  </code></pre>
 <h2 id="execute-macro-with-default-range">Execute macro with default
 range</h2>
