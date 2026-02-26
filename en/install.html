@@ -60,10 +60,10 @@ font-size: 14px;
 </head>
 <body>
 <h1 id="install">Install</h1>
-<p>At the moment the following systems have been tested.</p>
+<p>At the moment it is tested on the following systems.</p>
 <ul>
 <li>Ubuntu 24.04 (both of native and WSL2 on Windows11)</li>
-<li>AlmaLinux 9.5 (both of native and WSL2 on Windows11)</li>
+<li>AlmaLinux 9.7 (both of native and WSL2 on Windows11)</li>
 <li>macOS 12.7.6 (MacBook Air 2015 MJVM2J/A)</li>
 </ul>
 <p>In principle you can install the tip on the system which PLPLOT and
@@ -82,19 +82,23 @@ sudo apt install plplot-driver-cairo
 sudo apt install libreadline-dev
  </code></pre>
 <ul>
-<li><strong>AlmaLinux 9</strong></li>
+<li><strong>AlmaLinux 9.7</strong></li>
 </ul>
 <pre><code>
 sudo dnf update
 sudo dnf upgrade
-sudo dnf install dnf-plugins-core     (&lt;-- this may not be necessary)
-sudo dnf config-manager --enable crb
 sudo dnf install epel-release
-sudo dnf install epel-next-release
 sudo dnf install g++
 sudo dnf install plplot-devel
 sudo dnf install readline-devel
  </code></pre>
+<!-- 
+```
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager --enable crb
+sudo dnf install epel-next-release
+```
+-->
 <ul>
 <li><strong>Windows 11</strong></li>
 </ul>

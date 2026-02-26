@@ -63,7 +63,7 @@ font-size: 14px;
 <p>現在、以下のシステムで動作確認しています。</p>
 <ul>
 <li>Ubuntu 24.04</li>
-<li>AlmaLinux 9.5</li>
+<li>AlmaLinux 9.7</li>
 <li>macOS 12.7.6 (MacBook Air 2015 MJVM2J/A)</li>
 </ul>
 <p>基本的にPLPLOT と GNU readline がインストールされていれば
@@ -83,19 +83,23 @@ sudo apt install plplot-driver-cairo
 sudo apt install libreadline-dev
  </code></pre>
 <ul>
-<li><strong>AlmaLinux 9</strong></li>
+<li><strong>AlmaLinux 9.7</strong></li>
 </ul>
 <pre><code>
 sudo dnf update
 sudo dnf upgrade
-sudo dnf install dnf-plugins-core     (&lt;-- this may not be necessary)
-sudo dnf config-manager --enable crb
 sudo dnf install epel-release
-sudo dnf install epel-next-release
 sudo dnf install g++
 sudo dnf install plplot-devel
 sudo dnf install readline-devel
  </code></pre>
+<!-- 
+```
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager --enable crb
+sudo dnf install epel-next-release
+```
+-->
 <ul>
 <li><strong>Windows 11</strong></li>
 </ul>
