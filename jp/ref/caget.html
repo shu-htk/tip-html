@@ -62,22 +62,12 @@ font-size: 14px;
 <h1 id="caget">caget</h1>
 <pre><code>
 tip&gt; caget
-usage: caget EPICS_record [&gt; v]
- get the value from EPICS_record and print contents
- if &#39;&gt;&#39; is specified the value is redirected to the data v.
- also the following macro variable is created.
-macro variable:
-   v : the 1st element of data v
+Usage: caget EPICS_record [&gt; v]
+Get the value of the EPICS record and print it.
+If &#39;&gt;&#39; is specified, store the value into data v.
+Macro variable created:
+  v : first element of data v
  </code></pre>
-<p>Get the all elements of EPICS_record and print them.</p>
-<p>If it is redirected to “&gt; v”, the following variables are
-created.</p>
-<ul>
-<li><strong>data varaible :</strong>
-<code>set v = (all elements of EPICS_record)</code></li>
-<li><strong>macro variable :</strong>
-<code>@ v = (1st element of EPICS_record)</code></li>
-</ul>
 <p>exmaple</p>
 <pre><code>
 tip&gt; caget monitor:wf.NELM

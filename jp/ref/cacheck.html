@@ -62,29 +62,36 @@ font-size: 14px;
 <h1 id="cacheck">cacheck</h1>
 <pre><code>
 tip&gt; cacheck
-usage: cacheck v1,v2,...
- check if EPICS records connected to data v1,v2,... are updated.
- (v1,v2,... should be defeined by &#39;camon&#39;)
- also the following macro variables are created.
-macro variables:
-  v1        : the 1st element of data v1
-  v1.update : unix time if v1 updated, 0 if not updated
-  ...
+Usage: cacheck v1,v2,...
+Check whether EPICS records linked to v1,v2,... have updated.
+(v1,v2,... must be created by &#39;camon&#39;)
+Macro variables created:
+  v1        : first element of v1
+  v1.update : update time (epoch), or 0 if not updated
  </code></pre>
-<p>Check if the EPICS_record is updated.</p>
-<p>If it is updated the following variables are set.</p>
-<ul>
-<li><strong>data varaible :</strong>
-<code>set v = (all elements of EPICS_record)</code></li>
-<li><strong>macro variable :</strong>
-<code>@ v = (1st element of EPICS_record)</code></li>
-<li><strong>macro variable :</strong>
-<code>@ v.update = updated unix time (sec)</code></li>
-</ul>
-<p>If it is not updated the following variable is set.</p>
-<ul>
-<li><strong>macro variable :</strong> <code>@ v.update = 0</code></li>
-</ul>
+<p>If the value of EPICS record is updated, all elements are copied to
+the linked data variable.</p>
+<p>example:</p>
+<pre><code>
+tip&gt; camon monitor:ai1 &gt; x
+EpicsCA [monitor:ai1] opened.
+EpicsCA [monitor:ai1] monitor with default handler.
+
+tip&gt; cacheck x              ;# not updated at this time
+
+tip&gt; prn [x.update] [x]
+0 [x]
+
+tip&gt; caput monitor:ai1 &lt; 7  ;# updated to 7
+
+tip&gt; cacheck x
+
+tip&gt; prn [x.update] [x]
+1774104620.7 7
+
+tip&gt; caclose x
+EpicsCA [monitor:ai1] closed.
+ </code></pre>
 <p>see also <a href="camon.html">camon</a> and <a href="caclose.html">caclose</a></p>
 </body>
 </html>
