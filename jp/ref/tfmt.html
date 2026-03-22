@@ -62,15 +62,16 @@ font-size: 14px;
 <h1 id="tfmt">tfmt</h1>
 <pre><code>
 tip&gt; tfmt
-usage: tfmt &quot;time format&quot;
+Usage: tfmt &quot;time format&quot;
        tfmt reset
- set x-axis time format.
- equivalent to &#39;opt (tf:&quot;time format&quot;)&#39;
- tags in the format:
-         %Y(year), %m(month), %d(day), %H(hour), %M(min), %S(sec)
- reset : x-axis is reset to normal format.
+Set the x-axis time format.
+Equivalent to: opt (tf:&quot;time format&quot;)
+Format tags:
+  %Y(year) %m(month) %d(day)
+  %H(hour) %M(min) %S(sec)
+reset: restore normal (non-time) x-axis format.
  </code></pre>
-<p>this command is equivalent to <code>opt (tf:&quot;time format&quot;)</code></p>
+<p>This command is equivalent to <code>opt (tf:&quot;time format&quot;)</code></p>
 <p>example</p>
 <pre><code>
 opt (td:&quot;/ :&quot;)  ;# set time delimiters of ISO time format

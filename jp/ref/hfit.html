@@ -62,16 +62,10 @@ font-size: 14px;
 <h1 id="hfit">hfit</h1>
 <pre><code>
 tip&gt; hfit
-usage: hfit v func [(opt)]
- you should do the &#39;hplot&#39; before this command.
- &#39;hplot&#39; create a bin data v_hx, an entry data v_hy
- then &#39;fit v_hx v_hy func&#39; is done.
- see the command &#39;fit&#39; for the fitting functions.
+Usage: hfit v func [(opt)]
+Fit the histogram created by &#39;hplot&#39;.
+Uses v_hx and v_hy, then runs: fit v_hx v_hy func.
  </code></pre>
-<p>It fits the curve to histogram of data v after <a href="hplot.html">hplot</a> command. The fitting information is
-outputted to console and fitting curve is drawn on the existing graph.
-If you specify option <code>cp:X,Y</code>, the fitting information is
-drawn in the graph at (X,Y).</p>
 <h2 id="fitting-functions">fitting functions</h2>
 <p>see <a href="fit.html">fit</a></p>
 <h2 id="option">option</h2>

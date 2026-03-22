@@ -62,15 +62,17 @@ font-size: 14px;
 <h1 id="fmt">fmt</h1>
 <pre><code>
 tip&gt; fmt
-usage: fmt [&quot;format&quot;|reset|show]
- specify output format of macro variable.
- (it is same as printf)
- if &quot;reset&quot;, it is set to default (&quot;%.11g&quot;)
- if &quot;show&quot;, print current format
- example: @ x=1; fmt %03.0f; prn [x]
- output:  001
+Usage: fmt [&quot;format&quot; | reset | show]
+Specify the output format for macro variables.
+(Same syntax as printf.)
+reset : restore the default format (&quot;%.11g&quot;)
+show  : display the current format
+Example:
+  @ x=1; fmt &quot;%03.0f&quot;; prn [x]
+Output:
+  001
  </code></pre>
-<p>available format specifiers</p>
+<p>format specifiers</p>
 <table>
 <thead>
 <tr class="header">
@@ -91,34 +93,23 @@ usage: fmt [&quot;format&quot;|reset|show]
 <td style="text-align: center;">%g</td>
 <td style="text-align: center;">OK</td>
 </tr>
-</tbody>
-</table>
-<p>the following specifiers are not available</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">specifier</th>
-<th style="text-align: center;"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;">%c</td>
 <td style="text-align: center;">N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;">%s</td>
 <td style="text-align: center;">N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;">%d</td>
 <td style="text-align: center;">N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;">%u</td>
 <td style="text-align: center;">N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;">%x</td>
 <td style="text-align: center;">N/A</td>
 </tr>
