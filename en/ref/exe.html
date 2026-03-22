@@ -62,13 +62,13 @@ font-size: 14px;
 <h1 id="exe">exe</h1>
 <pre><code>
 tip&gt; exe
-usage: exe [macro_file] [arg1,arg2,...] [(opt)]
- execute macro_file
- arguments are referenced as macro variables
- they are named like x1=val,x2=val2,...
- if it is specified only values like val1,val2,...
- they are named $1=val1,$2=val2,...
- number of argumnts is named $#
+Usage: exe [macro_file] [arg1,arg2,...] [(opt)]
+Execute a macro file.
+Arguments become macro variables:
+  x1=val1,x2=val2,...
+If only values are given:
+  $1=val1,$2=val2,...
+Number of arguments is stored in $#.
  </code></pre>
 <h2 id="option">option</h2>
 <ul>

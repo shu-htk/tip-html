@@ -62,19 +62,12 @@ font-size: 14px;
 <h1 id="fit3">fit3</h1>
 <pre><code>
 tip&gt; fit3
-usage: fit3 x y z [plane] [(opt)]
- do fitting to the data x,y,z by plane function.
- you should do &#39;plot3 x y z&#39; before this command.
- available fitting functions:
-   p[lane] : z = c0 + c1*x + c2*y
+Usage: fit3 x y z [plane] [(opt)]
+Fit 3D data x,y,z with a plane.
+Run &#39;plot3 x y z&#39; before using this command.
+Functions:
+  plane : z = c0 + c1*x + c2*y
  </code></pre>
-<p>Fit the plane to the data x, y and z after <a href="plot3.html">plot3</a> command. The fitting information is
-outputted to console and fitting plane is drawn on the existing graph.
-If you specify option <code>cp:X,Y</code>, the fitting information is
-drawn in the graph at (X,Y).</p>
-<blockquote>
-<p>user defined fitting function is not available</p>
-</blockquote>
 <h2 id="fitting-functions">fitting functions</h2>
 <table>
 <thead>

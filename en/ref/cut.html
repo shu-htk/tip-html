@@ -62,18 +62,14 @@ font-size: 14px;
 <h1 id="cut">cut</h1>
 <pre><code>
 tip&gt; cut
-usage: cut v1,v2,... &quot;expression&quot;
- where v1,v2,... are data to cut
- new data v1_cut,v2_cut,... are created
-example:
- cut x,y &quot;0&lt;x&lt;1 &amp; 1&lt;y&lt;2&quot;
- plot x_cut y_cut
-using option &#39;cc:&#39; it is also done by
- plot x y (cc:&quot;0&lt;x&lt;1 &amp; 1&lt;y&lt;2&quot;)
+Usage: cut v1,v2,... &quot;expression&quot;
+Create v1_cut, v2_cut, ... by applying the expression.
+Example:
+  cut x,y &quot;0&lt;x&lt;1 &amp; 1&lt;y&lt;2&quot;
+  plot x_cut y_cut
+Equivalent using option:
+  plot x y (cc:&quot;0&lt;x&lt;1 &amp; 1&lt;y&lt;2&quot;)
  </code></pre>
-<p>Cut elements of the data listed in the argument by the specified
-condition<br />
-It is created cut data named like v1_cut, v2_cut, …</p>
 <blockquote>
 <p>list of data should be separated with commas and no spaces<br />
 condition of logical expression should be quoted by “”</p>
@@ -110,8 +106,6 @@ tip&gt; cat *_cut
 hight_cut : data(num) :  172 175 178
 name_cut : data(str) :  Saburo Shiro Goro
  </code></pre>
-<p>see also - <a href="../ex/ex09.html">ex09: Data Cutting and
-simplified logical expression</a> - <a href="../ex/ex11.html">ex11: Plot
-1D,2D Histograms and cutting the data</a></p>
+<p>see also <a href="../ex/ex09.html">ex09</a>, <a href="../ex/ex11.html">ex11</a></p>
 </body>
 </html>
