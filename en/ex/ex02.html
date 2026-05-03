@@ -74,7 +74,7 @@ for func (sqrt exp log log10 cos sin atan cosh sinh tanh acos asin tan floor)
   plot x y (tl:&quot;y=[func](x)&quot;)
 end
 
-for func_x (abs(sin(x)) pow(sin(x),3))
+for func_x (abs(sin(x)) sin(x)^3)
   set x = range(100,0,[pi2])
   set y = [func_x]
   plot x y (tl:&quot;y=[func_x]&quot;)

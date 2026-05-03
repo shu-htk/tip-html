@@ -68,7 +68,7 @@ Filter</h1>
 @ f_cut = 1/([pi2]*[R]*[C])       ;# cut-off frequency [Hz]
 
 set freq = range(10000,1e3,10e6)  ;# range from 1[kHz] to 10[MHz]
-set gain = 1/sqrt(1+pow([pi2]*freq*[C]*[R],2))
+set gain = 1/sqrt(1+([pi2]*freq*[C]*[R])^2)
 set gain_dB = 20*log10(gain)      ;# (dB of power)
 
 fmt &quot;%.2e&quot;
