@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>expansion</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h2 id="macro-variable-expansion">Macro Variable Expansion</h2>
+<blockquote>
+<p>Feature added in v1.2</p>
+</blockquote>
+<p>When expanding macro variables into a string by enclosing them in
+square brackets <code>[]</code>, the following specifications are now
+supported.</p>
+<h2 id="format-specification">(1) Format Specification</h2>
+<p>You can specify the format by prefixing the variable name with a
+colon, as shown below:</p>
+<pre><code>
+[%fmt:var]
+
+ </code></pre>
+<p>Prior to v1.2, this had to be specified using the <code>fmt</code>
+command, for example:</p>
+<pre><code>
+tip&gt; @ x=exp(10)
+
+tip&gt; fmt %10.2e
+tip&gt; prn [x]
+  2.20e+04
+
+ </code></pre>
+<p>However, from v1.2 onwards, you can combine multiple formats in a
+single line like this:</p>
+<pre><code>
+tip&gt; fmt reset
+tip&gt; prn default format: [x], specified format: [%10.2e:x]
+default format: 22026.465795, specified format:   2.20e+04
+
+ </code></pre>
+<h2 id="evaluating-and-expanding-mathematical-expressions">(2)
+Evaluating and Expanding Mathematical Expressions</h2>
+<pre><code>
+[expr(var)]
+
+ </code></pre>
+<p>You can now write a mathematical expression containing macro
+variables inside the square brackets <code>[]</code> and expand the
+calculated result into a string.</p>
+<p>Example:</p>
+<pre><code>
+tip&gt; @ pi=acos(-1)
+
+tip&gt; prn [2*pi]
+6.2831853072
+
+ </code></pre>
+<p>As a side note, <code>2*[pi]</code> is evaluated after
+<code>pi</code> is expanded into a string, whereas <code>[2*pi]</code>
+performs the calculation first and then expands the result into a
+string.</p>
+<p>Example:</p>
+<pre><code>
+tip&gt; calc 2*[pi]
+[2*3.1415926536] -&gt; [6.2831853072]
+
+tip&gt; calc [2*pi]
+[6.2831853072] -&gt; [6.2831853072]
+
+ </code></pre>
+<p>Expression evaluation can be used simultaneously with format
+specification.</p>
+<p>Example:</p>
+<pre><code>
+tip&gt; prn [%.2f:2*pi]
+6.28
+
+ </code></pre>
+<p>You can also include spaces in the format separator and within the
+mathematical expression.</p>
+<p>Example:</p>
+<pre><code>
+tip&gt; prn [%.2f : 2 * pi]
+6.28
+
+ </code></pre>
+</body>
+</html>

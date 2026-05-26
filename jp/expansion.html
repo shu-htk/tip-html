@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>expansion</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h2 id="マクロ変数の展開">マクロ変数の展開</h2>
+<blockquote>
+<p>v1.2で追加された機能</p>
+</blockquote>
+<p>マクロ変数を鍵括弧<code>[]</code>で囲んで文字列に展開する際、以下の指定ができるようになった</p>
+<h2 id="フォーマット指定">(1) フォーマット指定</h2>
+<p>以下のように変数名の前にコロンで区切ってフォーマットを指定する</p>
+<pre><code>
+[%fmt:var]
+ </code></pre>
+<p>v1.2より前では、例えば</p>
+<pre><code>
+tip&gt; @ x=exp(10)
+
+tip&gt; fmt %10.2e
+tip&gt; prn [x]
+  2.20e+04
+ </code></pre>
+<p>のように<code>fmt</code>コマンドで指定していたが、v.1.2以後は、</p>
+<pre><code>
+tip&gt; fmt reset
+tip&gt; prn default format: [x], specified format: [%10.2e:x]
+default format: 22026.465795, specified format:   2.20e+04
+ </code></pre>
+<p>のように、1行で複数のフォーマットを併用できるようになった</p>
+<h2 id="数式を評価して展開">(2) 数式を評価して展開</h2>
+<pre><code>
+[expr(var)]
+ </code></pre>
+<p>鍵括弧<code>[]</code>の中にマクロ変数を含んだ数式を記述し計算結果を文字列に展開できるようになった</p>
+<p>例：</p>
+<pre><code>
+tip&gt; @ pi=acos(-1)
+
+tip&gt; prn [2*pi]
+6.2831853072
+ </code></pre>
+<p>ちなみに、<code>2*[pi]</code>は、<code>pi</code>が文字列に展開された後に計算されるが、
+<code>[2*pi]</code>は、先に計算した後に結果を文字列に展開する</p>
+<p>例：</p>
+<pre><code>
+tip&gt; calc 2*[pi]
+[2*3.1415926536] -&gt; [6.2831853072]
+
+tip&gt; calc [2*pi]
+[6.2831853072] -&gt; [6.2831853072]
+ </code></pre>
+<p>数式評価はフォーマット指定と同時に使用できる</p>
+<p>例：</p>
+<pre><code>
+tip&gt; prn [%.2f:2*pi]
+6.28
+ </code></pre>
+<p>フォーマットの区切り、及び、数式にはスペースを入れてもよい</p>
+<p>例：</p>
+<pre><code>
+tip&gt; prn [%.2f : 2 * pi]
+6.28
+ </code></pre>
+</body>
+</html>

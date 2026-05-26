@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>syntax</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h2 id="tipインタープリタの構文規則">tipインタープリタの構文規則</h2>
+<h3 id="コマンドは行単位で実行される">コマンドは行単位で実行される</h3>
+<pre><code>
+tip&gt; title &quot;x vs y1 and y2&quot;
+tip&gt; plot x y1
+tip&gt; plot x y2 (rp:1) 
+ </code></pre>
+<h3 id="行の中に複数のコマンドを記述">１行の中に複数のコマンドを記述</h3>
+<p>セミコロン<code>;</code>で分離することで複数のコマンドを実行できます</p>
+<pre><code>
+tip&gt; title &quot;x vs y1 and y2&quot;; plot x y1; plot x y2 (rp:1) 
+ </code></pre>
+<h3 id="行をコメントアウトする">行をコメントアウトする</h3>
+<p><code>#</code> を行頭に置くとその行はコメントアウトされます</p>
+<pre><code>
+tip&gt; # comment out this line
+ </code></pre>
+<p>行の途中でコメントアウトするには、<code>;</code>
+で分離して<code>#</code>を置きます</p>
+<pre><code>
+tip&gt; plot x y ;# plotting data x and y  
+ </code></pre>
+<h3 id="変数">変数</h3>
+<ul>
+<li><strong>データ変数</strong></li>
+</ul>
+<p>データ変数は数値（または文字列）の配列で、<a href="ref/set.html">set</a> コマンドによって定義されます</p>
+<pre><code>
+tip&gt; set n={1,2,3}
+tip&gt; set x=sin(n)
+ </code></pre>
+<p>上の例をC言語風に書くと以下のようなことをやっています</p>
+<pre><code>
+double n[]={1,2,3};
+double x[sizeof(n)]; for(int i=0; i&lt;sizeof(n); i++) x[i]=sin(n[i]);
+ </code></pre>
+<p>データ変数の情報は <a href="ref/ls.html">ls</a>コマンドで、各要素の値は <a href="ref/cat.html">cat</a>コマンドで表示されます</p>
+<pre><code>
+tip&gt; ls *
+n : data(num) : size=3
+x : data(num) : size=3
+tip&gt; cat *
+n : data(num) :  1 2 3
+x : data(num) :  0.84147098481 0.90929742683 0.14112000806
+ </code></pre>
+<ul>
+<li><strong>マクロ変数</strong></li>
+</ul>
+<p>マクロ変数は数値（または文字列）のスカラー値で、 <a href="ref/var.html">@</a>コマンドによって定義されます<br />
+マクロ変数はブラケット<code>[ ]</code>で囲むことで、その値が
+フォーマットされた文字列に置換されます<br />
+<a href="ref/ls.html">ls</a>コマンドで情報と値の両方が表示されます</p>
+<pre><code>
+tip&gt; @ n=1
+tip&gt; @ x=sin([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
+tip&gt; ls *
+n : number [1]
+x : number [0.84147098481]
+ </code></pre>
+<p>マクロ変数はコマンドが解釈される前に文字列に置換されるので、
+以下のようなことができます</p>
+<pre><code>
+tip&gt; @ n=1
+tip&gt; @ func=sin
+tip&gt; @ ret=x
+tip&gt; @ [ret]=[func]([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
+tip&gt; ls *
+n : number [1]
+x : number [0.84147098481]
+func : string [sin]
+ret : string [x]
+ </code></pre>
+<ul>
+<li><strong>環境変数</strong></li>
+</ul>
+<p>シェルの環境変数は、<code>${ }</code>で参照することができます</p>
+<pre><code>
+tip&gt; prn ${SHELL}
+/bin/bash
+ </code></pre>
+</body>
+</html>

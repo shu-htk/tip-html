@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>rm</title>
+  <title>cmd_opt</title>
   <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,41 +59,21 @@ font-size: 14px;
 </style>
 </head>
 <body>
-<h1 id="rm">rm</h1>
+<h2 id="command-line-options-of-the-tip-interpreter">Command line
+options of the tip interpreter</h2>
 <pre><code>
-tip&gt; rm
-Usage: rm pattern
-Remove variables matching pattern.
-Example: rm *  removes all variables.
+$ tip -h
+usage: tip [options]
+
+options:(where arg is option&#39;s argument)
+ -h : show help message (also &#39;--help&#39;)
+ -v : show version (also &#39;--version&#39;)
+ -t arg: set window title (default is &quot;tip&quot;)
+ -g arg: set window geometry size (default is &quot;800x600&quot;)
+ -d arg: set drawing device (default is &quot;xcairo&quot;)
+ -e arg : execute a macro file
+ --pdf arg : graph is drawn in pdf file (window is not open)
+ --png arg : graph is drawn in png file (window is not open)
  </code></pre>
-<h2 id="argument-list-of-variable-names">argument list of variable
-names</h2>
-<blockquote>
-<p>argument list of variable names is separated by conmma with no
-spaces.</p>
-</blockquote>
-<h2 id="wild-card-matching-to-the-variable-name">wild-card matching to
-the variable name</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">match to</th>
-<th style="text-align: center;">wild card</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">any string</td>
-<td style="text-align: center;">*</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">any character</td>
-<td style="text-align: center;">?</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>wild card is <strong>not the regular expression</strong></p>
-</blockquote>
 </body>
 </html>

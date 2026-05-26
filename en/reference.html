@@ -59,109 +59,13 @@ font-size: 14px;
 </style>
 </head>
 <body>
-<h1 id="command-reference">Command Reference</h1>
-<h2 id="start-up-options-of-the-tip-interpreter">(1) Start up options of
-the tip interpreter</h2>
-<pre><code>
-$ tip -h
-usage: tip [options]
-
-options:(where arg is option&#39;s argument)
- -h : show help message (also &#39;--help&#39;)
- -v : show version (also &#39;--version&#39;)
- -t arg: set window title (default is &quot;tip&quot;)
- -g arg: set window geometry size (default is &quot;800x600&quot;)
- -d arg: set drawing device (default is &quot;xcairo&quot;)
- -e arg : execute a macro file
- --pdf arg : graph is drawn in pdf file (window is not open)
- --png arg : graph is drawn in png file (window is not open)
- </code></pre>
-<h2 id="syntax-of-the-tip-interpreter">(2) Syntax of the tip
-interpreter</h2>
-<h3 id="multiple-commands-in-a-line">Multiple commands in a line</h3>
-<p>Separating by “;” you can put multiple command in a line</p>
-<pre><code>
-tip&gt; title &quot;x vs y1 and y2&quot;; plot x y1; plot x y2 (rp:1) 
- </code></pre>
-<h3 id="comment-out-the-line">Comment out the line</h3>
-<p>Put the “#” at the head of the line</p>
-<pre><code>
-tip&gt; # comment out this line
- </code></pre>
-<p>Comment out from the middle of the line, put “;” before “#”</p>
-<pre><code>
-tip&gt; plot x y ;# plotting data x and y  
- </code></pre>
-<h3 id="variable">Variable</h3>
-<ul>
-<li><strong>Data variable</strong></li>
-</ul>
-<p>The data variable is array of number (or string) which is defined by
-<a href="ref/set.html">set</a> command.</p>
-<pre><code>
-tip&gt; set n={1,2,3}
-tip&gt; set x=sin(n)
- </code></pre>
-<p>Describing the above example by C-like, it is doing like,</p>
-<pre><code>
-double n[]={1,2,3};
-double x[sizeof(n)]; for(int i=0; i&lt;sizeof(n); i++) x[i]=sin(n[i]);
- </code></pre>
-<p>The information of data variable is shown by <a href="ref/ls.html">ls</a> command, and the element values are shown by
-<a href="ref/cat.html">cat</a> command.</p>
-<pre><code>
-tip&gt; ls *
-n : data(num) : size=3
-x : data(num) : size=3
-tip&gt; cat *
-n : data(num) :  1 2 3
-x : data(num) :  0.84147098481 0.90929742683 0.14112000806
- </code></pre>
-<ul>
-<li><strong>Macro variable</strong></li>
-</ul>
-<p>The macro variable is scalar of number (or string) which is defined
-by <a href="ref/var.html">@</a> command.<br />
-Enclosing the macro variable in the brackets <code>[ ]</code>, it is
-replaced to the string which is formatted by it’s value.<br />
-It’s information and value is shown by <a href="ref/ls.html">ls</a>
-command.</p>
-<pre><code>
-tip&gt; @ n=1
-tip&gt; @ x=sin([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
-tip&gt; ls *
-n : number [1]
-x : number [0.84147098481]
- </code></pre>
-<p>Actually, macro variable is replaced to the string before parsing the
-command, you can do like,</p>
-<pre><code>
-tip&gt; @ n=1
-tip&gt; @ func=sin
-tip&gt; @ ret=x
-tip&gt; @ [ret]=[func]([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
-tip&gt; ls *
-n : number [1]
-x : number [0.84147098481]
-func : string [sin]
-ret : string [x]
- </code></pre>
-<ul>
-<li><strong>Environment variable</strong></li>
-</ul>
-<p>Environment variables defined in the shell are referenced by ${
-}.</p>
-<pre><code>
-tip&gt; prn ${SHELL}
-/bin/bash
- </code></pre>
-<h2 id="commands-of-macrotool">(3) Commands of MacroTool</h2>
+<h2 id="commands-of-macrotool">Commands of MacroTool</h2>
 <ul>
 <li><a href="ref/var.html">@</a> : define and set value of the macro
 variable</li>
 <li><a href="ref/args.html">args</a> : set default argument of the macro
 file</li>
-<li><a href="ref/incr.html">++,--</a> : increment(+1), decrement(-1)
+<li><a href="ref/incr.html">++,–</a> : increment(+1), decrement(-1)
 numerical macro variable</li>
 <li><a href="ref/loop.html">for,do,while,end</a> : for, do, while
 loop</li>
@@ -181,8 +85,8 @@ expression</li>
 expression</li>
 <li>q : quit the tip interpreter</li>
 </ul>
-<h2 id="commands-of-drawing-and-handling-data.">(4) Commands of drawing
-and handling data.</h2>
+<h2 id="commands-of-drawing-and-handling-data.">Commands of drawing and
+handling data.</h2>
 <ul>
 <li><a href="ref/arc.html">arc</a> : draw a circle in 2D-graph</li>
 <li><a href="ref/box.html">box</a> : draw the axis of 2D-graph in the
@@ -249,8 +153,7 @@ data</li>
 <li><a href="ref/zlab.html">zlab</a> : set the z-axis label in
 3D-graph</li>
 </ul>
-<h2 id="commands-of-epics-ca-optional">(5) Commands of EPICS CA
-(optional)</h2>
+<h2 id="commands-of-epics-ca-option">Commands of EPICS CA (option)</h2>
 <ul>
 <li><a href="ref/cainfo.html">cainfo</a> : show information of
 record</li>

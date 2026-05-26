@@ -224,19 +224,11 @@ tip&gt; logic A=A!=B       ;# same to A==A &amp;&amp; A!=B
 <td style="text-align: center;">?</td>
 <td style="text-align: center;">string = s?ring</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">one of the list of chars</td>
-<td style="text-align: center;">[abc..], [a-z]</td>
-<td style="text-align: center;">string = [a-z]trin[efg]</td>
-</tr>
 </tbody>
 </table>
 <blockquote>
 <p>wild cards should be <strong>at the right part</strong> of the
 comparison</p>
-</blockquote>
-<blockquote>
-<p>wild card is implemented using <code>fnmatch()</code></p>
 </blockquote>
 <p>example</p>
 <pre><code>
@@ -253,9 +245,6 @@ tip&gt; logic [s]=B*
 
 tip&gt; logic [s]=?BC
 [ABC=?BC] -&gt; str_logic -&gt; [1]
-
-tip&gt; logic [s]=[A-Z]*
-[ABC=[A-Z]*] -&gt; str_logic -&gt; [1]
  </code></pre>
 <h2 id="list-matching-for-both-of-numerical-and-string-logic">List
 Matching (for both of numerical and string logic)</h2>
@@ -324,10 +313,10 @@ tip&gt; logic 6 = {1+2, 2*3}
 tip&gt; logic {1+2, 2*3} = 6
 [{1+2, 2*3} = 6] -&gt; str_logic -&gt; [0]  ;# NG: list-matching should be at the right
 
-tip&gt; logic abc == {a?, b*, [a-z]??}
-[abc == {a?, b*, [a-z]??}] -&gt; str_logic -&gt; [1]
+tip&gt; logic abc == {a??, b*}
+[abc == {a??, b*] -&gt; str_logic -&gt; [1]
 
-tip&gt; logic aaabbb = aaa{bbb,ccc}    ;# NG: it can&#39;t be concatenate to the other
+tip&gt; logic aaabbb = aaa{bbb,ccc}    ;# NG:
 [aaabbb = aaa{bbb,ccc}] -&gt; str_logic -&gt; [0]
  </code></pre>
 </body>

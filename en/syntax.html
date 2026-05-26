@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>syntax</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h2 id="syntax-of-the-tip-interpreter">Syntax of the tip
+interpreter</h2>
+<h3 id="commands-are-executed-line-by-line">Commands are executed line
+by line</h3>
+<pre><code>
+tip&gt; title &quot;x vs y1 and y2&quot;
+tip&gt; plot x y1
+tip&gt; plot x y2 (rp:1) 
+ </code></pre>
+<h3 id="multiple-commands-on-a-single-line">Multiple commands on a
+single line</h3>
+<p>You can execute multiple commands by separating them with semicolons
+<code>;</code></p>
+<pre><code>
+tip&gt; title &quot;x vs y1 and y2&quot;; plot x y1; plot x y2 (rp:1) 
+ </code></pre>
+<h3 id="comment-out-the-line">Comment out the line</h3>
+<p>Put the “#” at the head of the line</p>
+<pre><code>
+tip&gt; # comment out this line
+ </code></pre>
+<p>Comment out in the middle of the line, put “;” before “#”</p>
+<pre><code>
+tip&gt; plot x y ;# plotting data x and y  
+ </code></pre>
+<h3 id="variable">Variable</h3>
+<ul>
+<li><strong>Data variable</strong></li>
+</ul>
+<p>The data variable is array of number (or string) which is defined by
+<a href="ref/set.html">set</a> command.</p>
+<pre><code>
+tip&gt; set n={1,2,3}
+tip&gt; set x=sin(n)
+ </code></pre>
+<p>Describing the above example by C-like, it is doing like,</p>
+<pre><code>
+double n[]={1,2,3};
+double x[sizeof(n)]; for(int i=0; i&lt;sizeof(n); i++) x[i]=sin(n[i]);
+ </code></pre>
+<p>The information of data variable is shown by <a href="ref/ls.html">ls</a> command, and the element values are shown by
+<a href="ref/cat.html">cat</a> command.</p>
+<pre><code>
+tip&gt; ls *
+n : data(num) : size=3
+x : data(num) : size=3
+tip&gt; cat *
+n : data(num) :  1 2 3
+x : data(num) :  0.84147098481 0.90929742683 0.14112000806
+ </code></pre>
+<ul>
+<li><strong>Macro variable</strong></li>
+</ul>
+<p>The macro variable is scalar of number (or string) which is defined
+by <a href="ref/var.html">@</a> command.<br />
+Enclosing the macro variable in the brackets <code>[ ]</code>, it is
+replaced to the string which is formatted by it’s value.<br />
+It’s information and value is shown by <a href="ref/ls.html">ls</a>
+command.</p>
+<pre><code>
+tip&gt; @ n=1
+tip&gt; @ x=sin([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
+tip&gt; ls *
+n : number [1]
+x : number [0.84147098481]
+ </code></pre>
+<p>Actually, macro variable is replaced to the string before parsing the
+command, you can do like,</p>
+<pre><code>
+tip&gt; @ n=1
+tip&gt; @ func=sin
+tip&gt; @ ret=x
+tip&gt; @ [ret]=[func]([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
+tip&gt; ls *
+n : number [1]
+x : number [0.84147098481]
+func : string [sin]
+ret : string [x]
+ </code></pre>
+<ul>
+<li><strong>Environment variable</strong></li>
+</ul>
+<p>Environment variables defined in the shell are referenced by ${
+}.</p>
+<pre><code>
+tip&gt; prn ${SHELL}
+/bin/bash
+ </code></pre>
+</body>
+</html>

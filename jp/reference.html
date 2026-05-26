@@ -59,104 +59,12 @@ font-size: 14px;
 </style>
 </head>
 <body>
-<h1 id="コマンドリファレンス">コマンドリファレンス</h1>
-<h2 id="tipインタープリタの起動オプション">(1)
-tipインタープリタの起動オプション</h2>
-<pre><code>
-$ tip -h
-usage: tip [options]
-
-options:(where arg is option&#39;s argument)
- -h : show help message (also &#39;--help&#39;)
- -v : show version (also &#39;--version&#39;)
- -t arg: set window title (default is &quot;tip&quot;)
- -g arg: set window geometry size (default is &quot;800x600&quot;)
- -d arg: set drawing device (default is &quot;xcairo&quot;)
- -e arg : execute a macro file
- --pdf arg : graph is drawn in pdf file (window is not open)
- --png arg : graph is drawn in png file (window is not open)
- </code></pre>
-<h2 id="tipインタープリタの構文規則">(2)
-tipインタープリタの構文規則</h2>
-<h3 id="行の中に複数のコマンドを記述">1行の中に複数のコマンドを記述</h3>
-<p>セミコロン<code>;</code>で分離することで複数のコマンドを実行できます</p>
-<pre><code>
-tip&gt; title &quot;x vs y1 and y2&quot;; plot x y1; plot x y2 (rp:1) 
- </code></pre>
-<h3 id="行をコメントアウトする">行をコメントアウトする</h3>
-<p><code>#</code> を行頭に置くとその行はコメントアウトされます</p>
-<pre><code>
-tip&gt; # comment out this line
- </code></pre>
-<p>行の途中でコメントアウトするには、<code>;</code>
-で分離して<code>#</code>を置きます</p>
-<pre><code>
-tip&gt; plot x y ;# plotting data x and y  
- </code></pre>
-<h3 id="変数">変数</h3>
-<ul>
-<li><strong>データ変数</strong></li>
-</ul>
-<p>データ変数は数値（または文字列）の配列で、<a href="ref/set.html">set</a> コマンドによって定義されます</p>
-<pre><code>
-tip&gt; set n={1,2,3}
-tip&gt; set x=sin(n)
- </code></pre>
-<p>上の例をC言語風に書くと以下のようなことをやっています</p>
-<pre><code>
-double n[]={1,2,3};
-double x[sizeof(n)]; for(int i=0; i&lt;sizeof(n); i++) x[i]=sin(n[i]);
- </code></pre>
-<p>データ変数の情報は <a href="ref/ls.html">ls</a>コマンドで、各要素の値は <a href="ref/cat.html">cat</a>コマンドで表示されます</p>
-<pre><code>
-tip&gt; ls *
-n : data(num) : size=3
-x : data(num) : size=3
-tip&gt; cat *
-n : data(num) :  1 2 3
-x : data(num) :  0.84147098481 0.90929742683 0.14112000806
- </code></pre>
-<ul>
-<li><strong>マクロ変数</strong></li>
-</ul>
-<p>マクロ変数は数値（または文字列）のスカラー値で、 <a href="ref/var.html">@</a>コマンドによって定義されます<br />
-マクロ変数はブラケット<code>[ ]</code>で囲むことで、その値が
-フォーマットされた文字列に置換されます<br />
-<a href="ref/ls.html">ls</a>コマンドで情報と値の両方が表示されます</p>
-<pre><code>
-tip&gt; @ n=1
-tip&gt; @ x=sin([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
-tip&gt; ls *
-n : number [1]
-x : number [0.84147098481]
- </code></pre>
-<p>マクロ変数はコマンドが解釈される前に文字列に置換されるので、
-以下のようなことができます</p>
-<pre><code>
-tip&gt; @ n=1
-tip&gt; @ func=sin
-tip&gt; @ ret=x
-tip&gt; @ [ret]=[func]([n])  ;# this is parsed as &quot;@ x=sin(1)&quot;
-tip&gt; ls *
-n : number [1]
-x : number [0.84147098481]
-func : string [sin]
-ret : string [x]
- </code></pre>
-<ul>
-<li><strong>環境変数</strong></li>
-</ul>
-<p>シェルの環境変数は、<code>${ }</code>で参照することができます</p>
-<pre><code>
-tip&gt; prn ${SHELL}
-/bin/bash
- </code></pre>
-<h2 id="macrotoolのコマンド">(3) MacroToolのコマンド</h2>
+<h2 id="macrotoolのコマンド">MacroToolのコマンド</h2>
 <ul>
 <li><a href="ref/var.html">@</a> : マクロ変数の定義と値の代入</li>
 <li><a href="ref/args.html">args</a> :
 マクロファイルの引数のデフォルト値を設定</li>
-<li><a href="ref/incr.html">++,--</a> :
+<li><a href="ref/incr.html">++,–</a> :
 数値型マクロ変数のインクリメント(+1), デクリメント(-1)</li>
 <li><a href="ref/loop.html">for,do,while,end</a> : for, do, while
 ループ</li>
@@ -172,8 +80,7 @@ tip&gt; prn ${SHELL}
 <li><a href="ref/logic.html">logic</a> : 論理式を評価し結果を出力</li>
 <li>q : tipインタープリタを終了する</li>
 </ul>
-<h2 id="データの描画及び操作のコマンド">(4)
-データの描画及び操作のコマンド</h2>
+<h2 id="データの描画及び操作のコマンド">データの描画及び操作のコマンド</h2>
 <ul>
 <li><a href="ref/arc.html">arc</a> : 円の描画</li>
 <li><a href="ref/box.html">box</a> : 矩形の2次元座標を描画</li>
@@ -244,7 +151,7 @@ x軸を指定したフォーマットで時刻表示にする</li>
 <li><a href="ref/ylab.html">ylab</a> : y軸のラベルを指定する</li>
 <li><a href="ref/zlab.html">zlab</a> : z軸のラベルを指定する</li>
 </ul>
-<h2 id="epics-ca-のコマンドオプション機能">(5) EPICS CA
+<h2 id="epics-ca-のコマンドオプション機能">EPICS CA
 のコマンド(オプション機能)</h2>
 <ul>
 <li><a href="ref/cainfo.html">cainfo</a> :
