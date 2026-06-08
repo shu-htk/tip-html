@@ -80,83 +80,83 @@ Example:
 It draws plus marker &#39;+&#39; and text &#39;x : y&#39; at left,middle of the grapgh
  </code></pre>
 <blockquote>
-<p>v1.2.1 È~Ég¦é@<br />
-</p>
+<p>v1.2.1 以降に使える機能</p>
 </blockquote>
-<p>}á(legend)ðÝèA¦·é</p>
-<p>á</p>
+<p>凡例(legend)を設定、表示する</p>
+<p>例</p>
 <pre><code>
-tip&gt; box 0 1 0 1         ;# OtÌgð\¦
-tip&gt; legend add &quot;Hello&quot;  ;# }áðÇÁi1iÚj
-tip&gt; legend add &quot;World&quot;  ;# }áðÇÁi2iÚj
-tip&gt; legend show         ;# }áð\¦iftHgÊuFEãj
+tip&gt; box 0 1 0 1         ;# グラフの枠を表示
+tip&gt; legend add &quot;Hello&quot;  ;# 凡例を追加（1段目）
+tip&gt; legend add &quot;World&quot;  ;# 凡例を追加（2段目）
+tip&gt; legend show         ;# 凡例を表示（デフォルト位置：右上）
  </code></pre>
-<h2 id="lgivv"><code>lg:</code>IvV</h2>
-<p>ÈºÌR}“hF</p>
+<h2 id="lgオプション"><code>lg:</code>オプション</h2>
+<p>以下のコマンド：</p>
 <p><code>plot</code>,
 <code>fit</code>,<code>hplot</code>,<code>hfit</code>,<code>fplot</code>,<code>ffit</code></p>
-<p>ÅÍA<code>lg:</code>IvV“Åwèµ½¶ñª»ÌOtÌüíAV“{Æ¤É }áÉÇÁ³êé</p>
-<p>È¨A}áÌ¶ñª<code>*</code>Å Á½êAÈºÌ¶ñÉÏ·³êé</p>
+<p>では、<code>lg:</code>オプションで指定した文字列がそのグラフの線種、シンボルと共に
+凡例に追加される</p>
+<p>なお、凡例の文字列が<code>*</code>であった場合、以下の文字列に変換される</p>
 <table>
 <thead>
 <tr class="header">
-<th>R}“há</th>
-<th>Ï·ãÌ¶ñ</th>
+<th>コマンド例</th>
+<th>変換後の文字列</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>plot x y (lg:*)</code></td>
-<td><code>x : y</code>ixÌÏ¼ : yÌÏ¼j</td>
+<td><code>x : y</code>（xの変数名 : yの変数名）</td>
 </tr>
 <tr class="even">
 <td><code>fit x y lin (lg:*)</code></td>
-<td><code>lin fit</code> (Ö¼ + fit)</td>
+<td><code>lin fit</code> (関数名 + fit)</td>
 </tr>
 <tr class="odd">
 <td><code>hfit x gaus (lg:*)</code></td>
-<td><code>gaus fit</code> (Ö¼ + fit)</td>
+<td><code>gaus fit</code> (関数名 + fit)</td>
 </tr>
 <tr class="even">
 <td><code>fplot x y (lg:*)</code></td>
-<td><code>y : FFT</code> (yÌÏ¼ + FFT)</td>
+<td><code>y : FFT</code> (yの変数名 + FFT)</td>
 </tr>
 </tbody>
 </table>
-<p>á</p>
+<p>例</p>
 <pre><code>
 tip&gt; set x = range(10,1,10)
 tip&gt; set y = x
-tip&gt; plot x y (lw:0 st:plus sc:red lg:*) ;# ftHgÌ}áiV{ÆÏ¼j
-tip&gt; legend show left,top                ;# }áð\¦iwèÊuF¶ãj
+tip&gt; plot x y (lw:0 st:plus sc:red lg:*) ;# デフォルトの凡例（シンボルと変数名）
+tip&gt; legend show left,top                ;# 凡例を表示（指定位置：左上）
  </code></pre>
-<h2 id="lgivvàågéáêèo"><code>lg:</code>IvV““àÅg¦éÁÊÈ^O</h2>
+<h2 id="lgオプション内で使える特別なタグ"><code>lg:</code>オプション内で使える特別なタグ</h2>
 <table>
 <thead>
 <tr class="header">
-<th>^O¼</th>
-<th>¦³êéîñ</th>
-<th>gpá</th>
+<th>タグ名</th>
+<th>表示される情報</th>
+<th>使用例</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>%stat</code></td>
-<td>“vîñ</td>
+<td>統計情報</td>
 <td><code>hplot x (lg:*%stat)</code></td>
 </tr>
 <tr class="even">
 <td><code>%fit</code></td>
-<td>tBbeB“OW”</td>
+<td>フィッティング係数</td>
 <td><code>fit x y lin (lg:*%fit)</code></td>
 </tr>
 <tr class="odd">
 <td><code>%win</code></td>
-<td>’Ö¼</td>
+<td>窓関数名</td>
 <td><code>fplot v (lg:*%win)</code></td>
 </tr>
 </tbody>
 </table>
-<p>}NÌáF <a href="../../en/ex/ex28.html">ex28</a>, <a href="../../en/ex/ex29.html">ex29</a>, <a href="../../en/ex/ex30.html">ex30</a></p>
+<p>マクロの例： <a href="../../en/ex/ex28.html">ex28</a>, <a href="../../en/ex/ex29.html">ex29</a>, <a href="../../en/ex/ex30.html">ex30</a></p>
 </body>
 </html>
