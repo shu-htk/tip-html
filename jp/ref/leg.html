@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>leg</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h1 id="legend">legend</h1>
+<pre><code>
+tip&gt; legend
+Usage: legend [command] [(opt)]
+Draw legend on the existing graph. (alias: leg)
+command:
+ show [xpos,ypos]
+   xpos: right(r), middle(m), left(l) : (default is right)
+   ypos: top(t), middle(m), bottom(b) : (default is top)
+ add [string]
+   add legend string.
+ ls
+   list legend strings.
+ rm
+   remove legend strings.
+Example:
+   plot x y (st:plus lg:*)
+   legent show l,m
+It draws plus marker &#39;+&#39; and text &#39;x : y&#39; at left,middle of the grapgh
+ </code></pre>
+<blockquote>
+<p>v1.2.1 È~Ég¦é@<br />
+</p>
+</blockquote>
+<p>}á(legend)ðÝèA¦·é</p>
+<p>á</p>
+<pre><code>
+tip&gt; box 0 1 0 1         ;# OtÌgð\¦
+tip&gt; legend add &quot;Hello&quot;  ;# }áðÇÁi1iÚj
+tip&gt; legend add &quot;World&quot;  ;# }áðÇÁi2iÚj
+tip&gt; legend show         ;# }áð\¦iftHgÊuFEãj
+ </code></pre>
+<h2 id="lgivv"><code>lg:</code>IvV</h2>
+<p>ÈºÌR}“hF</p>
+<p><code>plot</code>,
+<code>fit</code>,<code>hplot</code>,<code>hfit</code>,<code>fplot</code>,<code>ffit</code></p>
+<p>ÅÍA<code>lg:</code>IvV“Åwèµ½¶ñª»ÌOtÌüíAV“{Æ¤É }áÉÇÁ³êé</p>
+<p>È¨A}áÌ¶ñª<code>*</code>Å Á½êAÈºÌ¶ñÉÏ·³êé</p>
+<table>
+<thead>
+<tr class="header">
+<th>R}“há</th>
+<th>Ï·ãÌ¶ñ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>plot x y (lg:*)</code></td>
+<td><code>x : y</code>ixÌÏ¼ : yÌÏ¼j</td>
+</tr>
+<tr class="even">
+<td><code>fit x y lin (lg:*)</code></td>
+<td><code>lin fit</code> (Ö¼ + fit)</td>
+</tr>
+<tr class="odd">
+<td><code>hfit x gaus (lg:*)</code></td>
+<td><code>gaus fit</code> (Ö¼ + fit)</td>
+</tr>
+<tr class="even">
+<td><code>fplot x y (lg:*)</code></td>
+<td><code>y : FFT</code> (yÌÏ¼ + FFT)</td>
+</tr>
+</tbody>
+</table>
+<p>á</p>
+<pre><code>
+tip&gt; set x = range(10,1,10)
+tip&gt; set y = x
+tip&gt; plot x y (lw:0 st:plus sc:red lg:*) ;# ftHgÌ}áiV{ÆÏ¼j
+tip&gt; legend show left,top                ;# }áð\¦iwèÊuF¶ãj
+ </code></pre>
+<h2 id="lgivvàågéáêèo"><code>lg:</code>IvV““àÅg¦éÁÊÈ^O</h2>
+<table>
+<thead>
+<tr class="header">
+<th>^O¼</th>
+<th>¦³êéîñ</th>
+<th>gpá</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%stat</code></td>
+<td>“vîñ</td>
+<td><code>hplot x (lg:*%stat)</code></td>
+</tr>
+<tr class="even">
+<td><code>%fit</code></td>
+<td>tBbeB“OW”</td>
+<td><code>fit x y lin (lg:*%fit)</code></td>
+</tr>
+<tr class="odd">
+<td><code>%win</code></td>
+<td>’Ö¼</td>
+<td><code>fplot v (lg:*%win)</code></td>
+</tr>
+</tbody>
+</table>
+<p>}NÌáF <a href="../../en/ex/ex28.html">ex28</a>, <a href="../../en/ex/ex29.html">ex29</a>, <a href="../../en/ex/ex30.html">ex30</a></p>
+</body>
+</html>

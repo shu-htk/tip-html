@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>leg</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">a {text-decoration: none;}
+h1 {font-size: 28px;}
+h2 {font-size: 22px;}
+h3 {font-size: 18px;}
+h4 {font-size: 16px;}
+body {
+background-color: #fdf6e3;
+margin: 40px;
+padding: 20px;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: 16px;
+}
+table, th, td {
+background-color: #eee8d5;
+border: 1px solid gray;
+border-collapse: collapse;
+padding: 6px;
+font-size: 16px;
+}
+code {
+background-color: #f6f8fa;
+padding: 6px;
+border-radius: 3px;
+font-size: 14px;
+}
+pre {
+overflow: hidden;
+padding: 0px 16px;
+background-color: #f6f8fa;
+border: 2px solid gray;
+border-radius: 6px;
+line-height: 1.9;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h1 id="legend">legend</h1>
+<pre><code>
+tip&gt; legend
+Usage: legend [command] [(opt)]
+Draw legend on the existing graph. (alias: leg)
+command:
+ show [xpos,ypos]
+   xpos: right(r), middle(m), left(l) : (default is right)
+   ypos: top(t), middle(m), bottom(b) : (default is top)
+ add [string]
+   add legend string.
+ ls
+   list legend strings.
+ rm
+   remove legend strings.
+Example:
+   plot x y (st:plus lg:*)
+   legent show l,m
+It draws plus marker &#39;+&#39; and text &#39;x : y&#39; at left,middle of the grapgh
+ </code></pre>
+<blockquote>
+<p>Available in version <strong>v1.2.1</strong> and later</p>
+</blockquote>
+<p>Set and display legends.</p>
+<p>Example:</p>
+<pre><code>
+tip&gt; box 0 1 0 1         ;# Draw the graph frame
+tip&gt; legend add &quot;Hello&quot;  ;# Add legend (1st line)
+tip&gt; legend add &quot;World&quot;  ;# Add legend (2nd line)
+tip&gt; legend show         ;# Display legend (default position: top‑right)
+ </code></pre>
+<hr />
+<h2 id="lg-option"><code>lg:</code> option</h2>
+<p>For the following commands:</p>
+<p><code>plot</code>, <code>fit</code>, <code>hplot</code>,
+<code>hfit</code>, <code>fplot</code>, <code>ffit</code></p>
+<p>the string specified by the <code>lg:</code> option is added to the
+legend together with the line style and symbol of that graph.</p>
+<p>If the legend string is <code>*</code>, it is automatically converted
+to the following:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command example</th>
+<th>Converted string</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>plot x y (lg:*)</code></td>
+<td><code>x : y</code> (variable name of x : variable name of y)</td>
+</tr>
+<tr class="even">
+<td><code>fit x y lin (lg:*)</code></td>
+<td><code>lin fit</code> (function name + “fit”)</td>
+</tr>
+<tr class="odd">
+<td><code>hfit x gaus (lg:*)</code></td>
+<td><code>gaus fit</code> (function name + “fit”)</td>
+</tr>
+<tr class="even">
+<td><code>fplot x y (lg:*)</code></td>
+<td><code>y : FFT</code> (variable name of y + “FFT”)</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code>
+tip&gt; set x = range(10,1,10)
+tip&gt; set y = x
+tip&gt; plot x y (lw:0 st:plus sc:red lg:*) ;# Default legend (symbol + variable names)
+tip&gt; legend show left,top                ;# Display legend at top‑left
+ </code></pre>
+<hr />
+<h2 id="special-tags-available-inside-the-lg-option">Special tags
+available inside the <code>lg:</code> option</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Displayed information</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%stat</code></td>
+<td>Statistical information</td>
+<td><code>hplot x (lg:*%stat)</code></td>
+</tr>
+<tr class="even">
+<td><code>%fit</code></td>
+<td>Fitting coefficients</td>
+<td><code>fit x y lin (lg:*%fit)</code></td>
+</tr>
+<tr class="odd">
+<td><code>%win</code></td>
+<td>Window function name</td>
+<td><code>fplot v (lg:*%win)</code></td>
+</tr>
+</tbody>
+</table>
+<p>macro examples: <a href="../ex/ex28.html">ex28</a>, <a href="../ex/ex29.html">ex29</a>, <a href="../ex/ex30.html">ex30</a></p>
+</body>
+</html>
