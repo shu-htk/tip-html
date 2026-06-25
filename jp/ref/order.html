@@ -61,15 +61,15 @@ font-size: 14px;
 <body>
 <h1 id="order">order</h1>
 <pre><code>
-ip&gt; order
-Usage: order [color]  [color1,color2,... | off]
-       order [symbol] [symb1,symb2,... | off]
-       order [fill]   [fill1,fill2,... | off]
-       order [ls | def | reset]
+tip&gt; order
+Usage: order [color] [color1,color2,...| off | default | ls]
+       order [symbol] [symb1,symb2,... | off | default | ls]
+       order [fill]   [fill1,fill2,... | off | default | ls]
 Set order of colors/symbols/fills list.
-&#39;ls&#39; shows current lists of order.
-&#39;def&#39; set default lists of order.
-&#39;reset&#39; clears all lists.
+Special list name:
+  off : clear the list.
+  default : set the default list.
+  ls : show the current list.
 Example:
   order color red,blue
   plot x y1
