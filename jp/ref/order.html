@@ -81,5 +81,37 @@ and y3 is drawn with red again.
 <blockquote>
 <p><strong>v1.2.2</strong> 以降から使える</p>
 </blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; set x=range(10,1,10)
+tip&gt; set y=log(x)
+
+tip&gt; order color default  ;# set default color list
+tip&gt; order color ls
+red blue green cyan pink wheat brown violet
+
+tip&gt; plot x y   ;# plot with red
+tip&gt; plot x y   ;# plot with blue
+tip&gt; plot x y   ;# plot with green
+tip&gt; plot x y   ;# plot with cyan
+tip&gt; plot x y   ;# plot with pink
+tip&gt; plot x y   ;# plot with wheat
+tip&gt; plot x y   ;# plot with brown
+tip&gt; plot x y   ;# plot with violet
+tip&gt; plot x y   ;# plot with red again
+
+tip&gt; order color yellow,aqua,magenta  ;# set user defined color list
+tip&gt; order color ls
+yellow aqua magenta
+
+tip&gt; plot x y   ;# plot with yellow
+tip&gt; plot x y   ;# plot with aqua
+tip&gt; plot x y   ;# plot with magenta
+tip&gt; plot x y   ;# plot with yellow again
+
+tip&gt; order color off  ;# automatic color change is off
+
+tip&gt; plot x y   ;# plot with black
+ </code></pre>
 </body>
 </html>
