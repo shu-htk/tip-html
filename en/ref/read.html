@@ -64,8 +64,10 @@ font-size: 14px;
 tip&gt; read
 Usage: read v1,v2,... file_name [(opt)]
        read v1,v2,... `command` [(opt)]
+       read v1,v2,... &lt;&lt; END_TAG [(opt)]
 Read data into v1,v2,...
 If a command is given, read from its output.
+If &lt;&lt; is given, read from the here-document which end with END_TAG
  </code></pre>
 <h2 id="option">option</h2>
 <h3 id="option-with-two-arguments">option with two arguments</h3>
@@ -187,6 +189,19 @@ x2 : data(str) :  B C D
 x3 : data(num) :  21 31 41
 x4 : data(num) :  22 32 42
 x5 : data(num) :  23 33 43
+ </code></pre>
+<p>example to read from the here-document</p>
+<pre><code>
+tip&gt; read x,y &lt;&lt; END
+tip&gt; 1 2
+tip&gt; 2 3
+tip&gt; 3 5
+tip&gt; 4 7
+tip&gt; END
+
+tip&gt; cat *
+x : data(num) :  1 2 3 4
+y : data(num) :  2 3 5 7
  </code></pre>
 </body>
 </html>
