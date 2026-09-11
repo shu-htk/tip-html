@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cin</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="data:text/css,a%20%7Btext%2Ddecoration%3A%20none%3B%7D%0Ah1%20%7Bfont%2Dsize%3A%2028px%3B%7D%0Ah2%20%7Bfont%2Dsize%3A%2022px%3B%7D%0Ah3%20%7Bfont%2Dsize%3A%2018px%3B%7D%0Ah4%20%7Bfont%2Dsize%3A%2016px%3B%7D%0Abody%20%7B%0Abackground%2Dcolor%3A%20%23fdf6e3%3B%0Amargin%3A%2040px%3B%0Apadding%3A%2020px%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%2010px%3B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Atable%2C%20th%2C%20td%20%7B%0Abackground%2Dcolor%3A%20%23eee8d5%3B%0Aborder%3A%201px%20solid%20gray%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%206px%3B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Acode%20%7B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Apadding%3A%206px%3B%0Aborder%2Dradius%3A%203px%3B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20hidden%3B%0Apadding%3A%200px%2016px%3B%0Abackground%2Dcolor%3A%20%23f6f8fa%3B%0Aborder%3A%202px%20solid%20gray%3B%0Aborder%2Dradius%3A%206px%3B%0Aline%2Dheight%3A%201%2E9%3B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0A" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cin">cin</h1>
+<pre><code>
+tip&gt; cin
+Usage: cin v [prompt]
+Input expression from console to macro variable v.
+ </code></pre>
+<blockquote>
+<p>Available in version v1.2.5 and later</p>
+</blockquote>
+<p>example</p>
+<pre><code>
+tip&gt; cin x  ;# default prompt is &quot;cin&quot;
+cin &gt; 0.7
+tip&gt; ls x
+x : number [0.7]
+
+tip&gt; cin x &quot;input numerical expression&quot;
+input numerical expression &gt; sin(1)+cos(1)
+tip&gt; ls x
+x : number [1.3817732907]
+
+tip&gt; cin s &quot;input string&quot;
+input string &gt; a b c
+tip&gt; ls s
+s : string [a b c]
+
+tip&gt; cin s2 &quot;input string&quot;
+input string &gt; [s]
+tip&gt; ls s2   ;# [s] is not expanded to &quot;a b c&quot;
+s2 : string [[s]]
+ </code></pre>
+</body>
+</html>
