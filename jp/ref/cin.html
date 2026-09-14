@@ -70,23 +70,23 @@ Input expression from console to macro variable v.
 </blockquote>
 <p>example</p>
 <pre><code>
-tip&gt; cin x  ;# default prompt is &quot;cin&quot;
-cin &gt; 0.7
+tip&gt; cin x  ;# default prompt is &quot;x = &quot;
+x = 0.7
 tip&gt; ls x
 x : number [0.7]
 
 tip&gt; cin x &quot;input numerical expression&quot;
-input numerical expression &gt; sin(1)+cos(1)
+input numerical expression: x = 1+2*3
 tip&gt; ls x
-x : number [1.3817732907]
+x : number [7]
 
 tip&gt; cin s &quot;input string&quot;
-input string &gt; a b c
+input string: s = a b c
 tip&gt; ls s
 s : string [a b c]
 
 tip&gt; cin s2 &quot;input string&quot;
-input string &gt; [s]
+input string: s2 = [s]
 tip&gt; ls s2   ;# [s] is not expanded to &quot;a b c&quot;
 s2 : string [[s]]
  </code></pre>
