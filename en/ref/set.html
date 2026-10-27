@@ -62,14 +62,16 @@ font-size: 14px;
 <h1 id="set">set</h1>
 <pre><code>
 tip&gt; set
-Usage: set v = {x0,x1,x2,...}
-       set v = range(N,x0,x1)
-       set v = incr(N,x0,dx)
-       set v = random(N,uni|gaus|exp[,params...]) [(opt)]
-       set v = time(t[,unit])
-       set v = expression
+Usage: set v [=|&lt;&lt;] {x0,x1,x2,...}
+       set v [=|&lt;&lt;] range(N,x0,x1)
+       set v [=|&lt;&lt;] incr(N,x0,dx)
+       set v [=|&lt;&lt;] random(N,uni|gaus|exp[,...]) [(opt)]
+       set v [=|&lt;&lt;] time(t[,unit])
+       set v [=|&lt;&lt;] copy(src,N0,N1)
+       set v [=|&lt;&lt;] expression
 Set data v using various expressions.
-See &#39;range&#39;, &#39;random&#39;, and &#39;time&#39; for details.
+Operator &#39;=&#39; create new data, &#39;&lt;&lt;&#39; append data.
+See &#39;range&#39;,&#39;incr&#39;,&#39;random&#39;,&#39;time&#39;,&#39;copy&#39; for details.
  </code></pre>
 <h2 id="set-data-using-initializer-list">set data using initializer
 list</h2>
@@ -167,6 +169,40 @@ x : data(num) : size=1  ;# data size is 1
 tip&gt; cat x
 x : data(num) :  2.7182818285
 tip&gt;
+ </code></pre>
+<h2 id="append-data-available-in-version-v1.2.6-and-later">append data
+(available in version v1.2.6 and later)</h2>
+<pre><code>
+tip&gt; set x = {1,2,3}
+tip&gt; cat x
+x : data(num) :  1 2 3
+
+tip&gt; set x &lt;&lt; {4,5,6}
+tip&gt; cat x
+x : data(num) :  1 2 3 4 5 6
+
+tip&gt; set x &lt;&lt; incr(5,10,1)
+tip&gt; cat x
+x : data(num) :  1 2 3 4 5 6 10 11 12 13 14
+ </code></pre>
+<h2 id="copy-data-available-in-version-v1.2.6-and-later">copy data
+(available in version v1.2.6 and later)</h2>
+<pre><code>
+tip&gt; set x = range(10,1,10)
+tip&gt; set y = copy(x)
+tip&gt; cat *
+x : data(num) :  1 2 3 4 5 6 7 8 9 10
+y : data(num) :  1 2 3 4 5 6 7 8 9 10
+
+tip&gt; set y = copy(x,3)
+tip&gt; cat *
+x : data(num) :  1 2 3 4 5 6 7 8 9 10
+y : data(num) :  3 4 5 6 7 8 9 10
+
+tip&gt; set y = copy(x,3,7)
+tip&gt; cat *
+x : data(num) :  1 2 3 4 5 6 7 8 9 10
+y : data(num) :  3 4 5 6 7
  </code></pre>
 </body>
 </html>
